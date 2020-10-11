@@ -37,3 +37,10 @@ mvn spring-boot:run
 Lembrem-se que por hora o banco de dados está na máquina local de cada um, logo, deverá ser configurado o arquivo "application.properties" conforme suas próprias configurações.
 
 Para auxilio nos comandos do git: https://www.youtube.com/watch?v=2alg7MQ6_sI&ab_channel=Rocketseat
+
+Dados:
+
+- As bibliotecas necessárias já estão inclusas no arquivo 'pom.xml'.
+- Somente funciona no BD PostgreSQL (adicionado somente este plugin no Spring Initializr)
+- Versão Spring Boot: 2.3.4
+- Versão Java: 11
