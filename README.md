@@ -31,6 +31,7 @@ Para iniciar o mvn spring-boot, basta usar o comando:
 
 mvn spring-boot:run
 
+http://localhost:8080/index.xhtml
 
 ### importante!
 
