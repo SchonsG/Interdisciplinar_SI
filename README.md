@@ -41,7 +41,5 @@ Para auxilio nos comandos do git: https://www.youtube.com/watch?v=2alg7MQ6_sI&ab
 
 Dados:
 
-- As bibliotecas necessárias já estão inclusas no arquivo 'pom.xml'.
-- Somente funciona no BD PostgreSQL (adicionado somente este plugin no Spring Initializr)
-- Versão Spring Boot: 2.3.4
+- As bibliotecas necessárias já estão inclusas no arquivo 'pom.xml'. (ServerFaces, PrimeFaces e SQL Server)
 - Versão Java: 11
