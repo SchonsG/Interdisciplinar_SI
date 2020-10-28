@@ -1,14 +1,22 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-  <title>Sistema Contábil</title>
-</h:head>
-<h:body>
+<ui:composition template="./templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
 
-  <h1>Hello World!</h1>
+    <ui:define name="content">
+        <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+        <title>Página Inicial - NOME DO SISTEMA</title>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <center>
+                    <h2>PÁGINA INICIAL. ATRIBUTOS A SEREM DEFINIDOS.</h2>
+                </center>
+            </div>
+            <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
 
-</h:body>
+            <!--INICIO DOS ARQUIVOS DO FOOTER-->
 
-</html>
+            <!--FINALIZA AS 3 DIVS NO FOOTER DEVIDO AS MESMAS SEREM ABERTAS NO HEADER-->
+        </div>
+
+    </ui:define>
+</ui:composition>
