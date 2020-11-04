@@ -13,6 +13,8 @@ Ou, através do botão 'Download Zip' na opção 'Code' em verde na tela inicial
 
 ### 2º - Push Repository
 
+É importante aceitar o convite de colaboração do projeto antes de tentar puxar o projeto para sua máquina local. Do contrário será negado o acesso. Esse convite deve estar no e-mail ou no próprio github.
+
 Adicionar 'Origin' do Repository. Deve ser feito na pasta do projeto, pode ser através da opção de terminal do VS Code, ou terminal/cmd de forma direta.
 
 Comandos:
