@@ -1,0 +1,281 @@
+<ui:composition template="./templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+  <ui:define name="content">
+    <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    <title>Novo Lançamento Contábil</title>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+        <nav aria-label="breadcrumb" style="font-size: 15px;">
+          <ol class="breadcrumb" style="background: #fefefe;">
+            <li class="breadcrumb-item"><a href="lancamento-contabil.xhtml">Lançamentos Contábeis</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Novo Lançamento</li>
+          </ol>
+        </nav>
+
+        <!--Buttons de acoes-->
+        <form>
+          <div class='row'>
+            <div class="form-group col-md-2">
+              <label for="exampleFormControlSelect1">Cód. Histórico</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class='col'>
+              <label for="exampleFormControlSelect1">Descrição Histórico</label>
+              <input class="form-control" type="text" placeholder="Baixa de produto do estoque" readonly='' />
+            </div>
+          </div>
+          <div class='row'>
+            <div class="form-group col-md-2">
+              <label for="exampleFormControlInput1">Data Lançamento</label>
+              <input type="date" class="form-control" id="exampleFormControlInput1" />
+            </div>
+            <div class='col'>
+              <label for="exampleFormControlInput1">Tipo de Operação</label>
+              <input class="form-control" type="text" placeholder="Operação Manual" readonly='' />
+            </div>
+            <div class='col'>
+              <label for="exampleFormControlSelect1">
+                <p></p>
+              </label>
+              <div class='btn-toolbar justify-content-around'>
+                <button type="button" class="btn btn-primary btn-primary-azul" data-toggle="modal"
+                  data-target="#modalCredito"><i class="fas">Créditos</i></button>
+                <button type="button" class="btn btn-primary btn-primary-azul"  data-toggle="modal"
+                data-target="#modalDebito"><i class="fas">Débitos</i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- <p:dataTable var="item" value="#{pedidoBean.pedidos}">
+                            <p:column headerText="Id">
+                              <h:outputText value="#{item.id}" />
+                            </p:column>
+                
+                            <p:column headerText="Nome do Cliente">
+                              <h:outputText value="#{item.cliente.razaosocial}" />
+                            </p:column>
+                
+                            <p:column headerText="Data do pedido">
+                              <h:outputText value="#{item.datapedido}">
+                                <f:convertDateTime type="localDate" pattern="dd/MM/yyyy" />
+                              </h:outputText>
+                            </p:column>
+                
+                            <p:column headerText="Descrição">
+                              <h:outputText value="#{item.descricao}" />
+                            </p:column>
+                          </p:dataTable> -->
+          <div style="margin-top: 30px;">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--LOOP DE DADOS-->
+                  <tr class="cursor">
+                    <th scope="row">1</th>
+                    <th scope="row">Crédito</th>
+                    <td>400.000,00</td>
+                    <td><i class="fas fa-trash" data-toggle="modal"
+                      data-dismiss="modal" data-target="#del"></i></td>
+                  </tr>
+                  <tr class="cursor">
+                    <th scope="row">2</th>
+                    <th scope="row">Débito</th>
+                    <td>400.000,00</td>
+                    <td><i class="fas fa-trash" data-toggle="modal"
+                      data-dismiss="modal" data-target="#del"></i></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p>
+            <a class="btn btn-primary btn-primary-azul" data-toggle="collapse" href="#collapseExample" role="button"
+              aria-expanded="false" aria-controls="collapseExample">
+              <i class="fas fa-comment-dots"></i>
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Complemento</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </div>
+        </form>
+
+        <div class="modal fade" id="del" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <form method="" action="" novalidate="" class="needs-validation">
+                <div class="modal-body">
+                  <center>
+                    <label><b>Deseja realmente excluir este registro?</b></label>
+                  </center>
+                  <!--ENVIA O ID DO USUARIO ESCONDIDO, ASSIM O USUARIO NAO VISUALIZA NENHUM CAMPO-->
+                  <input type="hidden" id="" value="" name="" />
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-danger" type="reset" data-toggle="modal" data-target="#edit"
+                    data-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+                  <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
+                    Excluir</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+          </div>
+          <div class="col-sm">
+          </div>
+          <div class="col-sm-3">
+            <a href="lancamento-contabil.xhtml" class="btn btn-outline-danger" role="button"
+            aria-pressed="true">Cancelar</a>
+          <button type="button" class="btn btn-outline-success">Lançar</button>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+
+    <!-- Modal Créditos -->
+    <div class="modal fade bd-example-modal-lg" id="modalCredito" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form>
+              <div class='row justify-content-around'>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="recipient-name" placeholder="Valor ex: R$100,00" />
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Busca Rápida por Conta"
+                      aria-label="Busca Rápida" aria-describedby="button-addon2" />
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                        <i class="fas fa-search"></i> Buscar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <div style="margin-top: 30px;">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Conta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!--LOOP DE DADOS-->
+                      <tr class="cursor">
+                        <th scope="row">1</th>
+                        <th scope="row">Conta Caixa</th>
+                      </tr>
+                      <tr class="cursor">
+                        <th scope="row">2</th>
+                        <th scope="row">Conta BB</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+    
+              <div class="modal-footer">
+                <button class="btn btn-danger" type="reset" data-dismiss="modal"><i class="fas fa-times"></i>
+                  Cancelar</button>
+                <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
+                  Adicionar</button>
+              </div>
+    
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Débitos -->
+    <div class="modal fade bd-example-modal-lg" id="modalDebito" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form>
+              <div class='row justify-content-around'>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="recipient-name" placeholder="Valor ex: R$100,00" />
+                </div>
+                <div class="form-group">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Busca Rápida por Conta"
+                      aria-label="Busca Rápida" aria-describedby="button-addon2" />
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                        <i class="fas fa-search"></i> Buscar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              <div style="margin-top: 30px;">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Conta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!--LOOP DE DADOS-->
+                      <tr class="cursor">
+                        <th scope="row">1</th>
+                        <th scope="row">Conta Caixa</th>
+                      </tr>
+                      <tr class="cursor">
+                        <th scope="row">2</th>
+                        <th scope="row">Conta BB</th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+    
+              <div class="modal-footer">
+                <button class="btn btn-danger" type="reset" data-dismiss="modal"><i class="fas fa-times"></i>
+                  Cancelar</button>
+                <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
+                  Adicionar</button>
+              </div>
+    
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+  </ui:define>
+</ui:composition>

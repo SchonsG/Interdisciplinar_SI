@@ -1,0 +1,158 @@
+<ui:composition template="./templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="content">
+        <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+        <title>Históricos Contábeis</title>
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+                <nav aria-label="breadcrumb" style="font-size: 15px;">
+                    <ol class="breadcrumb" style="background: #fefefe;">
+                        <li class="breadcrumb-item"><a href="#">Página inicial</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Históricos Contábeis</li>
+                    </ol>
+                </nav>
+                <!--Buttons de acoes-->
+
+
+                <!--FORMULARIO DE PESQUISA-->
+                <form method="" action="/gs_company" novalidate="" class="needs-validation">
+                    <div class="row justify-content-between">
+                        <div class="col-4">
+                            <div>
+                                <button type="button" class="btn btn-primary btn-primary-azul" data-toggle="modal" data-target="#users"><i
+                                        class="fas fa-plus"></i></button>
+                                <button type="button" class="btn btn-primary btn-primary-azul"><i
+                                        class="fas fa-trash"></i></button>
+                                <button type="button" class="btn btn-primary btn-primary-azul"><i
+                                        class="fas fa-search-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Busca Rápida"
+                                    aria-label="Busca Rápida" aria-describedby="button-addon2" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                                        <i class="fas fa-search"></i> Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!--FIM DO FORMULARIO-->
+
+                <!--INICIO DA TABELA-->
+                <div style="margin-top: 30px;"></div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Código</th>
+                                <th scope="col">Histórico</th>
+                                <th scope="col">Tipo Documento</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--LOOP DE DADOS-->
+                            <tr class="cursor" data-toggle="modal" data-target="#users">
+                                <th scope="row">1</th>
+                                <th scope="row">Venda de produto</th>
+                                <td>Saída estoque</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <nav aria-label="" style="float: right;">
+                        <ul class="pagination">
+                            <!--LOOP DE PAGINACAO-->
+                            <!--IF-->
+                            <li class="page-item"><a style='background: #343a40; color: #fff;' class="page-link"
+                                    href="#">1</a></li>
+                            <!--ELSE-->
+                            <li class="page-item"><a style="color: #343a40;" class="page-link" href="#">2</a></li>
+                            <!--FIM DO LOOP-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!--POR SE TRATAR DE UM MODAL E DE ARQUIVOS EM LOOP ADICIONA O MODAL ABAIXO-->
+            <div class="modal fade" id="users" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="modal-header">
+                                <h6 class="modal-title"><b>Registro - $usuario</b></h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
+                                    <label><b>DADOS PESSOAIS</b></label><br /><br />
+                                    <label><i class="fas fa-user"></i><b> Nome:</b> $nome</label><br />
+                                    <label><i class="fas fa-baby"></i><b> Nascimento:</b> $nasc</label><br />
+                                    <label><i class="fas fa-envelope"></i><b> E-mail:</b> $mail</label><br />
+                                </div>
+
+                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
+                                    <label><b>DADOS DE CADASTRO</b></label><br /><br />
+                                    <label><i class="fas fa-calendar-alt"></i><b> Cadastrado em:</b> $cad</label><br />
+                                </div>
+
+                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
+                                    <label><b>OPÇÕES</b></label><br /><br />
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-warning" title="Editar"
+                                            style="color: #fff;" data-toggle="modal" data-target="#edit"
+                                            data-dismiss="modal"><i class="fas fa-pencil-alt"></i> Editar</button>
+                                        <button type="button" class="btn btn-danger" title="Excluir" data-toggle="modal"
+                                            data-dismiss="modal" data-target="#del"><i class="fas fa-trash-alt"></i>
+                                            Excluir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="reset" data-dismiss="modal"><i
+                                    class="fas fa-times"></i> Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="del" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form method="" action="" novalidate="" class="needs-validation">
+                            <div class="modal-body">
+                                <center>
+                                    <label><b>Deseja realmente excluir este usuário(a)?</b></label>
+                                </center>
+                                <!--ENVIA O ID DO USUARIO ESCONDIDO, ASSIM O USUARIO NAO VISUALIZA NENHUM CAMPO-->
+                                <input type="hidden" id="" value="" name="" />
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" type="reset" data-toggle="modal" data-target="#edit"
+                                    data-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
+                                <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
+                                    Excluir</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    </ui:define>
+</ui:composition>
