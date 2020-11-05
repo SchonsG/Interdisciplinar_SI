@@ -1,0 +1,67 @@
+<ui:composition template="./templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+  <ui:define name="content">
+    <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    <title>Nova Conta</title>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+        <nav aria-label="breadcrumb" style="font-size: 15px;">
+          <ol class="breadcrumb" style="background: #fefefe;">
+            <li class="breadcrumb-item"><a href="plano-contas.xhtml">Plano de Contas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nova Conta</li>
+          </ol>
+        </nav>
+
+        <!--Buttons de acoes-->
+        <form>
+          <div class='row'>
+            <div class='form-group col-md-2'>
+              <label for="exampleFormControlSelect1">Código Reduzido</label>
+              <input class="form-control" type="text" placeholder="1.1.1.1" />
+            </div>
+            <div class="col">
+              <label for="exampleFormControlInput1">Descrição/Nome da Conta</label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" />
+            </div>
+
+          </div>
+          <div class='row'>
+            <div class="form-group col-md-4">
+              <label for="exampleFormControlSelect1">Tipo Conta</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Sintética</option>
+                <option>Análitica</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="exampleFormControlSelect1">Patrimonial/Resultado</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Patrimonial</option>
+                <option>Resultado</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="exampleFormControlSelect1">Ativo/Passivo</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Ativo</option>
+                <option>Passivo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-danger" type="reset" data-dismiss="modal"><i class="fas fa-times"></i>
+              Cancelar</button>
+            <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
+              Adicionar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+  </ui:define>
+</ui:composition>

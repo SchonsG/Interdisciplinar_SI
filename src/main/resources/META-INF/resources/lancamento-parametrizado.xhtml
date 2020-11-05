@@ -4,14 +4,14 @@
 
     <ui:define name="content">
         <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
-        <title>Lançamentos Contábeis</title>
+        <title>Parâmetros de Lançamentos Contábeis Automátizados</title>
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
                 <nav aria-label="breadcrumb" style="font-size: 15px;">
                     <ol class="breadcrumb" style="background: #fefefe;">
                         <li class="breadcrumb-item"><a href="index.xhtml">Página inicial</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Históricos Contábeis</li>
+                        <li class="breadcrumb-item active" aria-current="page">Parâmetros de Lançamentos Contábeis</li>
                     </ol>
                 </nav>
                 <!--Buttons de acoes-->
@@ -22,14 +22,14 @@
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
-                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-historico-contabil.xhtml'"><i
+                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-parametro-lancamento.xhtml'"><i
                                         class="fas fa-plus"></i></button>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Busca Rápida por Histórico"
+                                <input type="text" class="form-control" placeholder="Busca Rápida por Operação"
                                     aria-label="Busca Rápida" aria-describedby="button-addon2" />
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">
@@ -48,8 +48,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Código</th>
-                                <th scope="col">Histórico</th>
-                                <th scope="col">Tipo Documento</th>
+                                <th scope="col">Operação</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -58,18 +57,16 @@
                             <!--LOOP DE DADOS-->
                             <tr class="cursor">
                                 <th scope="row">1</th>
-                                <td>VALORES REFERENTE A SALARIOS</td>
-                                <td>Documento A</td>
+                                <th scope="row">Baixa Estoque</th>
                                 <td><i class="fas fa-edit" href="#"></i></td>
-                                <td data-toggle="modal"
+                                <td  data-toggle="modal"
                                 data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
                             </tr>
                             <tr class="cursor">
                                 <th scope="row">2</th>
-                                <td>VALORES DE DESPESAS DE ALUGUEIS</td>
-                                <td>Documento B</td>
+                                <th scope="row">Entrada Mercadoria</th>
                                 <td><i class="fas fa-edit" href="#"></i></td>
-                                <td data-toggle="modal"
+                                <td  data-toggle="modal"
                                 data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
                             </tr>
                         </tbody>
@@ -96,7 +93,7 @@
                         <form method="" action="" novalidate="" class="needs-validation">
                             <div class="modal-body">
                                 <center>
-                                    <label><b>Deseja realmente excluir este histórico?</b></label>
+                                    <label><b>Deseja realmente excluir esta parametrização?</b></label>
                                 </center>
                                 <!--ENVIA O ID DO USUARIO ESCONDIDO, ASSIM O USUARIO NAO VISUALIZA NENHUM CAMPO-->
                                 <input type="hidden" id="" value="" name="" />
