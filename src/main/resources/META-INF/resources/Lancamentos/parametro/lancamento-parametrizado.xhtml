@@ -1,17 +1,17 @@
-<ui:composition template="./templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="content">
         <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
-        <title>Lançamentos Contábeis</title>
+        <title>Parâmetros de Operação Parametrizada</title>
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
                 <nav aria-label="breadcrumb" style="font-size: 15px;">
                     <ol class="breadcrumb" style="background: #fefefe;">
-                        <li class="breadcrumb-item"><a href="index.xhtml">Página inicial</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Lançamentos Contábeis</li>
+                        <li class="breadcrumb-item"><a href="operacao-parametrizada.xhtml">Operações Parametrizadas</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Parâmetros da Operação Parametrizada</li>
                     </ol>
                 </nav>
                 <!--Buttons de acoes-->
@@ -22,16 +22,14 @@
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
-                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-lancamento-contabil.xhtml'"><i
+                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-parametro.xhtml'"><i
                                         class="fas fa-plus"></i></button>
-                                <button type="button" class="btn btn-primary btn-primary-azul" data-toggle="modal" data-target="#pesquisa"><i
-                                        class="fas fa-search-plus"></i></button>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Busca Rápida por Histórico"
+                                <input type="text" class="form-control" placeholder="Busca Rápida por Parâmetro"
                                     aria-label="Busca Rápida" aria-describedby="button-addon2" />
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">
@@ -49,11 +47,9 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Histórico</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Natureza</th>
+                                <th scope="col">Código Parâmetro</th>
+                                <th scope="col">Conta</th>
+                                <th>Histórico</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -62,21 +58,17 @@
                             <!--LOOP DE DADOS-->
                             <tr class="cursor">
                                 <th scope="row">1</th>
-                                <th scope="row">01/10/2020</th>
-                                <td>VALORES REFERENTE A SALARIOS</td>
-                                <td>400.000,00</td>
-                                <td>Credora</td>
-                                <td><i class="fas fa-edit" href="#"></i></td>
+                                <th scope="row">Despesas administrativas e comerciais</th>
+                                <th>VALORES REFERENTE A SALARIOS</th>
+                                <td><a  href="novo-parametro.xhtml"><i class="fas fa-edit"></i></a></td>
                                 <td  data-toggle="modal"
                                 data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
                             </tr>
                             <tr class="cursor">
                                 <th scope="row">2</th>
-                                <th scope="row">02/10/2020</th>
-                                <td>RECEBIMENTO NF Nº2171</td>
-                                <td>2.000,00</td>
-                                <td>Devedora</td>
-                                <td><i class="fas fa-edit" href="#"></i></td>
+                                <th scope="row">Aluguel</th>
+                                <th>VALORES DE DESPESAS DE ALUGUEIS</th>
+                                <td><a  href="novo-parametro.xhtml"><i class="fas fa-edit"></i></a></td>
                                 <td  data-toggle="modal"
                                 data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
                             </tr>
@@ -97,52 +89,6 @@
                 </div>
             </div>
 
-            <!--POR SE TRATAR DE UM MODAL E DE ARQUIVOS EM LOOP ADICIONA O MODAL ABAIXO-->
-            <div class="modal fade" id="pesquisa" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <div class="modal-header">
-                                <h6 class="modal-title"><b>Consulta Lançamento Contábil</b></h6>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true"></span>
-                                </button>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
-                                    <label for="exampleFormControlSelect1"></label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>Data Inclusão</option>
-                                        <option>Histórico</option>
-                                    </select>
-                                </div>
-            
-                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
-                                    <label for="exampleFormControlSelect1"></label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>Maior que</option>
-                                        <option>Contém</option>
-                                    </select>
-                                </div>
-            
-                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
-                                    <label for="exampleFormControlSelect1"></label>
-                                    <input class="form-control" type="text" placeholder="Valor a Consultar" />
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-danger" type="reset" data-dismiss="modal"><i class="fas fa-times"></i>
-                                Fechar</button>
-                            <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
-                                Pesquisar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="modal fade" id="del" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal modal-dialog-centered" role="document">
@@ -150,7 +96,7 @@
                         <form method="" action="" novalidate="" class="needs-validation">
                             <div class="modal-body">
                                 <center>
-                                    <label><b>Deseja realmente excluir este lançamento?</b></label>
+                                    <label><b>Deseja realmente excluir esta parametrização?</b></label>
                                 </center>
                                 <!--ENVIA O ID DO USUARIO ESCONDIDO, ASSIM O USUARIO NAO VISUALIZA NENHUM CAMPO-->
                                 <input type="hidden" id="" value="" name="" />

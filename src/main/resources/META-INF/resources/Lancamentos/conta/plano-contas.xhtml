@@ -1,17 +1,17 @@
-<ui:composition template="./templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="content">
         <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
-        <title>Parâmetros de Lançamentos Contábeis Automátizados</title>
+        <title>Plano de Conts</title>
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
                 <nav aria-label="breadcrumb" style="font-size: 15px;">
                     <ol class="breadcrumb" style="background: #fefefe;">
                         <li class="breadcrumb-item"><a href="index.xhtml">Página inicial</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Parâmetros de Lançamentos Contábeis</li>
+                        <li class="breadcrumb-item active" aria-current="page">Plano de Contas</li>
                     </ol>
                 </nav>
                 <!--Buttons de acoes-->
@@ -22,14 +22,14 @@
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
-                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-parametro-lancamento.xhtml'"><i
+                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'nova-conta.xhtml'"><i
                                         class="fas fa-plus"></i></button>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Busca Rápida por Operação"
+                                <input type="text" class="form-control" placeholder="Busca Rápida por Nome Conta"
                                     aria-label="Busca Rápida" aria-describedby="button-addon2" />
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" id="button-addon2">
@@ -48,7 +48,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">Código</th>
-                                <th scope="col">Operação</th>
+                                <th scope="col">Conta</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Patrimonial/Resultado</th>
+                                <th scope="col">Ativo/Passivo</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -57,17 +61,24 @@
                             <!--LOOP DE DADOS-->
                             <tr class="cursor">
                                 <th scope="row">1</th>
-                                <th scope="row">Baixa Estoque</th>
+                                <th scope="row">1.1</th>
+                                <td>Despesas administrativas e comerciais</td>
+                                <td>Sintética</td>
+                                <td>Patrimonial</td>
+                                <td>Ativa</td>
                                 <td><i class="fas fa-edit" href="#"></i></td>
                                 <td  data-toggle="modal"
                                 data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
                             </tr>
                             <tr class="cursor">
                                 <th scope="row">2</th>
-                                <th scope="row">Entrada Mercadoria</th>
+                                <th scope="row">1.1.1</th>
+                                <td>Aluguel</td>
+                                <td>Sintética</td>
+                                <td>Patrimonial</td>
+                                <td>Ativa</td>
                                 <td><i class="fas fa-edit" href="#"></i></td>
-                                <td  data-toggle="modal"
-                                data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
+                                <td data-toggle="modal" data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -93,7 +104,7 @@
                         <form method="" action="" novalidate="" class="needs-validation">
                             <div class="modal-body">
                                 <center>
-                                    <label><b>Deseja realmente excluir esta parametrização?</b></label>
+                                    <label><b>Deseja realmente excluir esta conta?</b></label>
                                 </center>
                                 <!--ENVIA O ID DO USUARIO ESCONDIDO, ASSIM O USUARIO NAO VISUALIZA NENHUM CAMPO-->
                                 <input type="hidden" id="" value="" name="" />

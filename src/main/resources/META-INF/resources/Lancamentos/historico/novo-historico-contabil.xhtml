@@ -1,4 +1,4 @@
-<ui:composition template="./templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
   xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
@@ -15,33 +15,32 @@
           </ol>
         </nav>
 
-        <!--Buttons de acoes-->
-        <form>
+        <h:form>
+
           <div class='row'>
-            <div class="form-group col-md-2">
-              <label for="exampleFormControlSelect1">Tipo Documento</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Documento A</option>
-                <option>Documento B</option>
-                <option>Documento C</option>
-                <option>Documento D</option>
-                <option>Documento E</option>
-              </select>
-            </div>
             <div class='col'>
-              <label for="exampleFormControlSelect1">Descrição Histórico</label>
-              <input class="form-control" type="text" placeholder="Histórico..." />
+              <h:panelGrid class='col'>
+                <p:row>
+                <h:outputLabel value="Descrição Histórico" />
+                <h:inputText class="form-control" placeholder="Histórico..."
+                  value="#{historicoBean.historico.HISTORICO}" />
+                </p:row>
+              </h:panelGrid>
+              <br />
             </div>
           </div>
-
           <div class="modal-footer">
-            <button class="btn btn-danger" type="reset" data-dismiss="modal"><i class="fas fa-times"></i>
-              Cancelar</button>
-            <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
-              Adicionar</button>
+            <h:commandButton value="Cancelar" class="btn btn-danger"
+              action="#{historicoBean.cancelar()}">
+              <!-- <i class=""></i> -->
+            </h:commandButton>
+            <h:commandButton value="Adicionar" class="btn btn-success"
+              action="#{historicoBean.save()}">
+              <!-- <i class=""></i> -->
+            </h:commandButton>
           </div>
 
-        </form>
+        </h:form>
       </div>
     </div>
 

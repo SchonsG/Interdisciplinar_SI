@@ -1,4 +1,4 @@
-<ui:composition template="./templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets">
 
@@ -11,7 +11,7 @@
                 <nav aria-label="breadcrumb" style="font-size: 15px;">
                     <ol class="breadcrumb" style="background: #fefefe;">
                         <li class="breadcrumb-item"><a href="index.xhtml">Página inicial</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Históricos Contábeis</li>
+                        <li class="breadcrumb-item active" aria-current="page">Lançamentos Contábeis</li>
                     </ol>
                 </nav>
                 <!--Buttons de acoes-->
@@ -22,8 +22,10 @@
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
-                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-historico-contabil.xhtml'"><i
+                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-lancamento-contabil.xhtml'"><i
                                         class="fas fa-plus"></i></button>
+                                <button type="button" class="btn btn-primary btn-primary-azul" data-toggle="modal" data-target="#pesquisa"><i
+                                        class="fas fa-search-plus"></i></button>
                             </div>
                         </div>
 
@@ -48,8 +50,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">Código</th>
+                                <th scope="col">Data</th>
                                 <th scope="col">Histórico</th>
-                                <th scope="col">Tipo Documento</th>
+                                <th scope="col">Valor</th>
+                                <th scope="col">Natureza</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
@@ -58,18 +62,22 @@
                             <!--LOOP DE DADOS-->
                             <tr class="cursor">
                                 <th scope="row">1</th>
+                                <th scope="row">01/10/2020</th>
                                 <td>VALORES REFERENTE A SALARIOS</td>
-                                <td>Documento A</td>
+                                <td>400.000,00</td>
+                                <td>Credora</td>
                                 <td><i class="fas fa-edit" href="#"></i></td>
-                                <td data-toggle="modal"
+                                <td  data-toggle="modal"
                                 data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
                             </tr>
                             <tr class="cursor">
                                 <th scope="row">2</th>
-                                <td>VALORES DE DESPESAS DE ALUGUEIS</td>
-                                <td>Documento B</td>
+                                <th scope="row">02/10/2020</th>
+                                <td>RECEBIMENTO NF Nº2171</td>
+                                <td>2.000,00</td>
+                                <td>Devedora</td>
                                 <td><i class="fas fa-edit" href="#"></i></td>
-                                <td data-toggle="modal"
+                                <td  data-toggle="modal"
                                 data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
                             </tr>
                         </tbody>
@@ -89,6 +97,52 @@
                 </div>
             </div>
 
+            <!--POR SE TRATAR DE UM MODAL E DE ARQUIVOS EM LOOP ADICIONA O MODAL ABAIXO-->
+            <div class="modal fade" id="pesquisa" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal modal-dialog-centered modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="modal-header">
+                                <h6 class="modal-title"><b>Consulta Lançamento Contábil</b></h6>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
+                                    <label for="exampleFormControlSelect1"></label>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>Data Inclusão</option>
+                                        <option>Histórico</option>
+                                    </select>
+                                </div>
+            
+                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
+                                    <label for="exampleFormControlSelect1"></label>
+                                    <select class="form-control" id="exampleFormControlSelect1">
+                                        <option>Maior que</option>
+                                        <option>Contém</option>
+                                    </select>
+                                </div>
+            
+                                <div class="col-lg-4 col-xl-4 col-sm-4 col-6">
+                                    <label for="exampleFormControlSelect1"></label>
+                                    <input class="form-control" type="text" placeholder="Valor a Consultar" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" type="reset" data-dismiss="modal"><i class="fas fa-times"></i>
+                                Fechar</button>
+                            <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
+                                Pesquisar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="modal fade" id="del" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal modal-dialog-centered" role="document">
@@ -96,7 +150,7 @@
                         <form method="" action="" novalidate="" class="needs-validation">
                             <div class="modal-body">
                                 <center>
-                                    <label><b>Deseja realmente excluir este histórico?</b></label>
+                                    <label><b>Deseja realmente excluir este lançamento?</b></label>
                                 </center>
                                 <!--ENVIA O ID DO USUARIO ESCONDIDO, ASSIM O USUARIO NAO VISUALIZA NENHUM CAMPO-->
                                 <input type="hidden" id="" value="" name="" />

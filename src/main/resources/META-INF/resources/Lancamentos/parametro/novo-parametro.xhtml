@@ -1,0 +1,74 @@
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+  <ui:define name="content">
+    <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    <title>Novo Parâmetro</title>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+        <nav aria-label="breadcrumb" style="font-size: 15px;">
+          <ol class="breadcrumb" style="background: #fefefe;">
+            <li class="breadcrumb-item"><a href="lancamento-parametrizado.xhtml">Parâmetros da Operação Parametrizada</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Novo Parâmetro</li>
+          </ol>
+        </nav>
+
+        <!--Buttons de acoes-->
+        <form>
+          <div class='row'>
+            <!-- <div class="form-group col-md-2">
+              <label for="exampleFormControlSelect1">Cód. Histórico</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div> -->
+            <div class='col'>
+              <label for="exampleFormControlInput1">Nome da Operação Parametrizada</label>
+              <input class="form-control" type="text" placeholder="Saída estoque" readonly='' />
+            </div>
+            <div class='col'>
+              <label for="exampleFormControlSelect1">Histórico</label>
+              <input class="form-control" type="text" placeholder="Baixa de produto do estoque" />
+            </div>
+          </div>
+          <br />
+          <div class='row'>
+            <div class='col'>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Crédito</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Débito</a>
+                  </div>
+                </div>
+                <input type="text" class="form-control" placeholder="Nome da conta" aria-label="Conta referente ao tipo" />
+              </div>
+            </div>
+          </div>
+        </form>
+        <br />
+        <div class="row">
+          <div class="col-sm">
+          </div>
+          <div class="col-sm">
+          </div>
+          <div class="col-sm-3">
+            <a href="lancamento-parametrizado.xhtml" class="btn btn-outline-danger" role="button"
+            aria-pressed="true">Cancelar</a>
+          <button type="button" class="btn btn-outline-success">Salvar</button>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+
+    <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+  </ui:define>
+</ui:composition>
