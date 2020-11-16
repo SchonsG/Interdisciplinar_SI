@@ -25,7 +25,7 @@ public class ContaBean {
   private String contaPesquisa = "";
 
   public void Pesquisar() {
-     this.contas = repositoryConta.contaPesquisa(this.contaPesquisa);
+     this.contas = repositoryConta.findByCONTAContaining(this.contaPesquisa);
   }
   
   public List<Conta> getContas() {
@@ -33,7 +33,7 @@ public class ContaBean {
     if (this.contaPesquisa.isEmpty()) {
       contas = repositoryConta.findAll();
     } else {
-      contas = repositoryConta.contaPesquisa(this.contaPesquisa);
+      contas = repositoryConta.findByCONTAContaining(this.contaPesquisa);
     }
 
     return contas;

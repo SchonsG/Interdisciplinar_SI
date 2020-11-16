@@ -26,13 +26,13 @@ public class HistoricoBean {
     if (this.historicoPesquisa.isEmpty()) {
       historicos = repositoryHistorico.findAll();
     } else {
-      historicos = repositoryHistorico.historicoPesquisa(this.historicoPesquisa);
+      historicos = repositoryHistorico.findByHISTORICOContaining(this.historicoPesquisa);
     }
     return historicos;
   }
 
   public void Pesquisar() {
-    historicos = repositoryHistorico.historicoPesquisa(this.historicoPesquisa);
+    historicos = repositoryHistorico.findByHISTORICOContaining(this.historicoPesquisa);
   }
 
   public String editar(Historico hist) { 
