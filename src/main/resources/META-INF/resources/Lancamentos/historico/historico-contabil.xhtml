@@ -34,7 +34,8 @@
                                     placeholder="Busca Rápida por Histórico" aria-label="Busca Rápida"
                                     aria-describedby="button-addon2" />
                                 <div class="input-group-append">
-                                    <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary" id="button-addon2" value="Pesquisar histórico"
+                                    <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary"
+                                        id="button-addon2" value="Pesquisar histórico"
                                         action="#{historicoBean.Pesquisar()}">
                                     </h:commandButton>
                                 </div>
@@ -47,25 +48,30 @@
                 <!--INICIO DA TABELA-->
                 <div style="margin-top: 30px;"></div>
                 <div class="table-responsive">
-                    <h:dataTable value="#{historicoBean.historicos}" var="item" styleClass="table table-striped">
-                        <h:column>
-                            <f:facet name="header">Código</f:facet>
-                            <h:outputText value="#{item.HISTORICO_ID}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Histórico</f:facet>
-                            <h:outputText value="#{item.HISTORICO}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header"></f:facet>
-                            <i class="fas fa-edit" href="#"></i>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header"></f:facet>
-                            <i data-toggle="modal" data-dismiss="modal" data-target="#del" class="fas fa-trash"></i>
-                        </h:column>
-                    </h:dataTable>
+                    <h:form>
+                        <h:dataTable value="#{historicoBean.historicos}" var="item" styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">Código</f:facet>
+                                <h:outputText value="#{item.HISTORICO_ID}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Histórico</f:facet>
+                                <h:outputText value="#{item.HISTORICO}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandLink class="btn btn-link" action="#{historicoBean.editar(item)}"><i class="fas fa-edit"
+                                        href="#"></i></h:commandLink>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
 
+                                <h:commandLink class="btn btn-link" action="#{historicoBean.deletar(item)}"><i data-toggle="modal"
+                                        data-dismiss="modal" data-target="#del" class="fas fa-trash"></i>
+                                </h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
                     <nav aria-label="" style="float: right;">
                         <ul class="pagination">
                             <!--LOOP DE PAGINACAO-->

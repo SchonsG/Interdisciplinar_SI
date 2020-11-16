@@ -16,50 +16,76 @@
         </nav>
 
         <!--Buttons de acoes-->
-        <form>
-          <div class='row'>
-            <div class='form-group col-md-2'>
-              <label for="exampleFormControlSelect1">Código Reduzido</label>
-              <input class="form-control" type="text" placeholder="1.1.1.1" />
-            </div>
-            <div class="col">
-              <label for="exampleFormControlInput1">Descrição/Nome da Conta</label>
-              <input type="text" class="form-control" id="exampleFormControlInput1" />
+
+        <h:panelGrid class='col'>
+
+          <h:form>
+
+            <div class='form-row'>
+              <div class="col col-md-3">
+                <h:outputLabel value="Código" />
+                <h:inputText class="form-control" placeholder="1.1.1.1" value="#{contaBean.conta.CONTA_PLANO}" />
+                <!-- <input class="form-control" type="text" placeholder="1.1.1.1" /> -->
+              </div>
+              <div class="col">
+                <h:outputLabel value="Descrição/Nome da Conta" />
+                <!-- <input type="text" class="form-control" id="exampleFormControlInput1" /> -->
+                <h:inputText class="form-control" placeholder="Conta..." value="#{contaBean.conta.CONTA}" />
+              </div>
             </div>
 
-          </div>
-          <div class='row'>
-            <div class="form-group col-md-4">
-              <label for="exampleFormControlSelect1">Tipo Conta</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Sintética</option>
-                <option>Análitica</option>
-              </select>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="exampleFormControlSelect1">Patrimonial/Resultado</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Patrimonial</option>
-                <option>Resultado</option>
-              </select>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="exampleFormControlSelect1">Ativo/Passivo</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>Ativo</option>
-                <option>Passivo</option>
-              </select>
-            </div>
-          </div>
+            <br />
 
-          <div class="modal-footer">
-            <button class="btn btn-danger" type="reset" data-dismiss="modal"><i class="fas fa-times"></i>
-              Cancelar</button>
-            <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
-              Adicionar</button>
-          </div>
+            <div class='form-row'>
 
-        </form>
+              <div class="col col-md-3">
+                <h:outputLabel for="@next" value="Conta superior:" />
+                <h:selectOneMenu value="#{contaBean.conta.CONTA_SUP}" converter="#{contaConverter}" class="form-control">
+                  <f:selectItems value="#{contaBean.contas}" var="item" itemLabel="#{item.CONTA}" />
+                </h:selectOneMenu>
+              </div>
+
+              <div class="col col-md-3">
+                <h:outputLabel for="@next" value="Sintética/Analítica" />
+                <h:selectOneMenu class="form-control" id="Sintetica_Analitica"
+                  value="#{contaBean.conta.PATRIMONIO_RESULT}" style="width:125px">
+                  <f:selectItem itemLabel="Sintética" itemValue="1" />
+                  <f:selectItem itemLabel="Analítica" itemValue="2" />
+                </h:selectOneMenu>
+              </div>
+
+              <div class="col col-md-3">
+                <h:outputLabel for="@next" value="Patrimonial/Resultado" />
+                <h:selectOneMenu class="form-control" id="patrimonio_result"
+                  value="#{contaBean.conta.PATRIMONIO_RESULT}" style="width:125px">
+                  <f:selectItem itemLabel="Patrimonial" itemValue="1" />
+                  <f:selectItem itemLabel="Resultado" itemValue="2" />
+                </h:selectOneMenu>
+              </div>
+
+              <div class="col">
+                <h:outputLabel for="@next" value="Ativo/Passivo" />
+                <h:selectOneMenu class="form-control" id="ATIVO_PASSIVO" value="#{contaBean.conta.ATIVO_PASSIVO}"
+                  style="width:125px">
+                  <f:selectItem itemLabel="Ativa" itemValue="1" />
+                  <f:selectItem itemLabel="Passiva" itemValue="2" />
+                </h:selectOneMenu>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="modal-footer">
+              <h:button value="Cancelar" class="btn btn-danger" outcome="plano-contas">
+              </h:button>
+              <h:commandButton value="Adicionar" class="btn btn-success" action="#{contaBean.save()}">
+              </h:commandButton>
+            </div>
+
+          </h:form>
+
+        </h:panelGrid>
+
       </div>
     </div>
     <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->

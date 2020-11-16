@@ -35,23 +35,19 @@ public class HistoricoBean {
     historicos = repositoryHistorico.historicoPesquisa(this.historicoPesquisa);
   }
 
-  /*
-   * public String editHistorico(Historico hist) { this.historico = hist; return
-   * "...pagedit"; }
-   */
-
-  public void delete(Historico hist) {
+  public String editar(Historico hist) { 
+    this.historico = hist;
+    return "editar-historico-contabil.xhtml?faces-redirect=true&includeViewParams=true";
+  }
+  
+  public void deletar(Historico hist) {
     repositoryHistorico.delete(hist);
   }
 
   public String save() {
     repositoryHistorico.save(historico);
     this.historico = new Historico();
-    return "historico-contabil";
-  }
-
-  public String cancelar() {
-    return "historico-contabil";
+    return "historico-contabil.xhtml?faces-redirect=true&includeViewParams=true";
   }
 
   public void setHistorico(Historico historico) {

@@ -15,13 +15,13 @@ public class Conta {
  
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long CONTA_ID;
+  private Integer CONTA_ID;
 
   private String CONTA_PLANO;
 
   private String CONTA;
 
-  private long CONT_SUP;
+  private long CONTA_SUP;
 
   private String PATRIMONIO_RESULT;
 
@@ -36,11 +36,11 @@ public class Conta {
   @OneToMany(mappedBy = "CONTA_ID")
   private List<Debito> CREDITOS;
 
-  public long getCONTA_ID() {
+  public Integer getCONTA_ID() {
     return CONTA_ID;
   }
 
-  public void setCONTA_ID(long cONTA_ID) {
+  public void setCONTA_ID(Integer cONTA_ID) {
     CONTA_ID = cONTA_ID;
   }
 
@@ -60,12 +60,12 @@ public class Conta {
     CONTA = cONTA;
   }
 
-  public long getCONT_SUP() {
-    return CONT_SUP;
+  public long getCONTA_SUP() {
+    return CONTA_SUP;
   }
 
-  public void setCONT_SUP(long cONT_SUP) {
-    CONT_SUP = cONT_SUP;
+  public void setCONTA_SUP(long cONT_SUP) {
+    CONTA_SUP = cONT_SUP;
   }
 
   public String getPATRIMONIO_RESULT() {
@@ -106,6 +106,31 @@ public List<Debito> getCREDITOS() {
 
 public void setCREDITOS(List<Debito> cREDITOS) {
 	CREDITOS = cREDITOS;
+}
+
+@Override
+public int hashCode() {
+  final int prime = 31;
+  int result = 1;
+  result = prime * result + ((CONTA_ID == null) ? 0 : CONTA_ID.hashCode());
+  return result;
+}
+
+@Override
+public boolean equals(Object obj) {
+  if (this == obj)
+    return true;
+  if (obj == null)
+    return false;
+  if (getClass() != obj.getClass())
+    return false;
+  Conta other = (Conta) obj;
+  if (CONTA_ID == null) {
+    if (other.CONTA_ID != null)
+      return false;
+  } else if (!CONTA_ID.equals(other.CONTA_ID))
+    return false;
+  return true;
 }
 
 }

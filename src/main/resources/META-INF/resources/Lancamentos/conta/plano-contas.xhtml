@@ -18,77 +18,81 @@
 
 
                 <!--FORMULARIO DE PESQUISA-->
-                <form method="" action="/gs_company" novalidate="" class="needs-validation">
+                <h:form method="" novalidate="" class="needs-validation">
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
-                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'nova-conta.xhtml'"><i
-                                        class="fas fa-plus"></i></button>
+                                <button type="button" class="btn btn-primary btn-primary-azul"
+                                    onclick="location.href = 'nova-conta.xhtml'"><i class="fas fa-plus"></i></button>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Busca Rápida por Nome Conta"
-                                    aria-label="Busca Rápida" aria-describedby="button-addon2" />
+                                <h:inputText value="#{contaBean.contaPesquisa}" class="form-control"
+                                    placeholder="Busca Rápida por Nome Conta" aria-label="Busca Rápida"
+                                    aria-describedby="button-addon2" />
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                                        <i class="fas fa-search"></i> Buscar</button>
+                                    <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary"
+                                        id="button-addon2" value="Pesquisar Conta" action="#{contaBean.Pesquisar()}">
+                                    </h:commandButton>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </h:form>
                 <!--FIM DO FORMULARIO-->
 
                 <!--INICIO DA TABELA-->
                 <div style="margin-top: 30px;"></div>
                 <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Conta</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Patrimonial/Resultado</th>
-                                <th scope="col">Ativo/Passivo</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--LOOP DE DADOS-->
-                            <tr class="cursor">
-                                <th scope="row">1</th>
-                                <th scope="row">1.1</th>
-                                <td>Despesas administrativas e comerciais</td>
-                                <td>Sintética</td>
-                                <td>Patrimonial</td>
-                                <td>Ativa</td>
-                                <td><i class="fas fa-edit" href="#"></i></td>
-                                <td  data-toggle="modal"
-                                data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
-                            </tr>
-                            <tr class="cursor">
-                                <th scope="row">2</th>
-                                <th scope="row">1.1.1</th>
-                                <td>Aluguel</td>
-                                <td>Sintética</td>
-                                <td>Patrimonial</td>
-                                <td>Ativa</td>
-                                <td><i class="fas fa-edit" href="#"></i></td>
-                                <td data-toggle="modal" data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
 
+                    <h:form>
+                        <h:dataTable value="#{contaBean.contas}" var="item" styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">Código</f:facet>
+                                <h:outputText value="#{item.CONTA_ID}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Conta</f:facet>
+                                <h:outputText value="#{item.CONTA_PLANO}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Nome</f:facet>
+                                <h:outputText value="#{item.CONTA}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Conta Pai</f:facet>
+                                <h:outputText value="#{item.CONTA_SUP}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Patrominial/Resultado</f:facet>
+                                <h:outputText value="#{item.PATRIMONIO_RESULT}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Ativo/Passivo</f:facet>
+                                <h:outputText value="#{item.ATIVO_PASSIVO}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandLink class="btn btn-link" action="#{contaBean.editar(item)}"><i class="fas fa-edit"
+                                        href="#"></i></h:commandLink>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandLink class="btn btn-link" action="#{contaBean.deletar(item)}"><i data-toggle="modal"
+                                        data-dismiss="modal" data-target="#del" class="fas fa-trash"></i>
+                                </h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
                     <nav aria-label="" style="float: right;">
                         <ul class="pagination">
                             <!--LOOP DE PAGINACAO-->
                             <!--IF-->
                             <li class="page-item"><a style='background: #1C4869; color: #fff;' class="page-link"
-                                    href="#">1</a></li>
+                                    href="#">1</a>
+                            </li>
                             <!--ELSE-->
                             <li class="page-item"><a style="color: #343a40;" class="page-link" href="#">2</a></li>
                             <!--FIM DO LOOP-->

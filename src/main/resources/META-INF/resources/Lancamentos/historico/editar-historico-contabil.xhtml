@@ -4,14 +4,14 @@
 
   <ui:define name="content">
     <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
-    <title>Novo Histórico Contábil</title>
+    <title>Editar Histórico Contábil</title>
     <div id="page-content-wrapper">
       <div class="container-fluid">
         <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
         <nav aria-label="breadcrumb" style="font-size: 15px;">
           <ol class="breadcrumb" style="background: #fefefe;">
             <li class="breadcrumb-item"><a href="historico-contabil.xhtml">Históricos Contábeis</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Novo Histórico</li>
+            <li class="breadcrumb-item active" aria-current="page">Editar Histórico</li>
           </ol>
         </nav>
 
@@ -32,8 +32,9 @@
           <div class="modal-footer">
             <h:button value="Cancelar" class="btn btn-danger"
             outcome="historico-contabil">
+              <!-- <i class=""></i> -->
             </h:button>
-            <h:commandButton value="Adicionar" class="btn btn-success"
+            <h:commandButton value="Salvar" class="btn btn-success"
               action="#{historicoBean.save()}">
               <!-- <i class=""></i> -->
             </h:commandButton>
@@ -42,6 +43,7 @@
         </h:form>
       </div>
     </div>
+
     <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
   </ui:define>
 </ui:composition>
