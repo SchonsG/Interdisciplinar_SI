@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import setrem.SistemaContabil.model.Historico;
 
 @Repository
-public interface HistoricoRepository extends JpaRepository<Historico, Long>{
+public interface HistoricoRepository extends JpaRepository<Historico, Integer>{
   
 /*   @Query("select c from Historico c where upper(c.HISTORICO) like upper(?1)")
   public List<Historico> historicoPesquisa(String historico); */

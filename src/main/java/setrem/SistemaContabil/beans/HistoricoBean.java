@@ -31,6 +31,11 @@ public class HistoricoBean {
     return historicos;
   }
 
+  public String novo(){
+    this.historico = new Historico();
+    return "novo-historico-contabil.xhtml?faces-redirect=true&includeViewParams=true";
+  }
+
   public void Pesquisar() {
     historicos = repositoryHistorico.findByHISTORICOContaining(this.historicoPesquisa);
   }

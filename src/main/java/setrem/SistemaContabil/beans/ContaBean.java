@@ -18,7 +18,7 @@ public class ContaBean {
   @Autowired
   private ContaRepository repositoryConta;
 
-  private Conta conta;
+  private Conta conta = new Conta();
 
   private List<Conta> contas = new ArrayList<>();
 
@@ -43,6 +43,11 @@ public class ContaBean {
     repositoryConta.save(conta);
     this.conta = new Conta();
     return "plano-contas.xhtml?faces-redirect=true&includeViewParams=true";
+  }
+
+  public String novo(){
+    this.conta = new Conta();
+    return "nova-conta.xhtml?faces-redirect=true&includeViewParams=true";
   }
 
   public String editar(Conta conta) { 

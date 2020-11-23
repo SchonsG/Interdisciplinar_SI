@@ -1,6 +1,6 @@
 <ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:define name="content">
         <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
@@ -10,7 +10,7 @@
                 <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
                 <nav aria-label="breadcrumb" style="font-size: 15px;">
                     <ol class="breadcrumb" style="background: #fefefe;">
-                        <li class="breadcrumb-item"><a href="index.xhtml">Página inicial</a></li>
+                        <li class="breadcrumb-item"><a href="/../../index.xhtml">Página inicial</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Operações Parametrizadas</li>
                     </ol>
                 </nav>
@@ -18,60 +18,65 @@
 
 
                 <!--FORMULARIO DE PESQUISA-->
-                <form method="" action="/gs_company" novalidate="" class="needs-validation">
+                <h:form method="" novalidate="" class="needs-validation">
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
-                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-parametro-lancamento.xhtml'"><i
-                                        class="fas fa-plus"></i></button>
+                                <h:commandLink class="btn btn-link" action="#{operacaoBean.novo()}">
+                                    <button type="button" class="btn btn-primary btn-primary-azul"><i
+                                            class="fas fa-plus"></i></button>
+                                </h:commandLink>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Busca Rápida por Operação"
-                                    aria-label="Busca Rápida" aria-describedby="button-addon2" />
+                                <h:inputText value="#{operacaoBean.operacaoPesquisa}" class="form-control"
+                                    a:placeholder="Busca rápida operação" aria-label="Busca Rápida"
+                                    aria-describedby="button-addon2" />
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                                        <i class="fas fa-search"></i> Buscar</button>
+                                    <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary"
+                                        id="button-addon2" value="Pesquisar operação"
+                                        action="#{operacaoBean.Pesquisar()}">
+                                    </h:commandButton>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </h:form>
                 <!--FIM DO FORMULARIO-->
 
-                <!--INICIO DA TABELA-->
                 <div style="margin-top: 30px;"></div>
                 <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Operação</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--LOOP DE DADOS-->
-                            <tr class="cursor">
-                                <th scope="row">1</th>
-                                <th scope="row">Baixa Estoque</th>
-                                <td><a href="lancamento-parametrizado.xhtml"><i class="fas fa-edit"></i></a></td>
-                                <td  data-toggle="modal"
-                                data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
-                            </tr>
-                            <tr class="cursor">
-                                <th scope="row">2</th>
-                                <th scope="row">Entrada Mercadoria</th>
-                                <td><a href="lancamento-parametrizado.xhtml"><i class="fas fa-edit"></i></a></td>
-                                <td  data-toggle="modal"
-                                data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <h:form>
+                        <h:dataTable value="#{operacaoBean.operacoes}" var="item" styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">Código</f:facet>
+                                <h:outputText value="#{item.TP_OPERACAO_ID}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Tipo operação</f:facet>
+                                <h:outputText value="#{item.TP_OPERACAO}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Histórico</f:facet>
+                                <h:outputText value="#{item.HISTORICO_ID}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandLink class="btn btn-link" action="#{operacaoBean.editar(item)}"><i
+                                        class="fas fa-edit" href="#"></i></h:commandLink>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
 
+                                <h:commandLink class="btn btn-link" action="#{operacaoBean.deletar(item)}"><i
+                                        data-toggle="modal" data-dismiss="modal" data-target="#del"
+                                        class="fas fa-trash"></i>
+                                </h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
                     <nav aria-label="" style="float: right;">
                         <ul class="pagination">
                             <!--LOOP DE PAGINACAO-->
@@ -86,28 +91,6 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="del" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <form method="" action="" novalidate="" class="needs-validation">
-                            <div class="modal-body">
-                                <center>
-                                    <label><b>Deseja realmente excluir esta operação?</b></label>
-                                </center>
-                                <!--ENVIA O ID DO USUARIO ESCONDIDO, ASSIM O USUARIO NAO VISUALIZA NENHUM CAMPO-->
-                                <input type="hidden" id="" value="" name="" />
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-danger" type="reset" data-toggle="modal" data-target="#edit"
-                                    data-dismiss="modal"><i class="fas fa-times"></i> Cancelar</button>
-                                <button type="input" class="btn btn-success"><i class="fas fa-check"></i>
-                                    Excluir</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
         <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
     </ui:define>

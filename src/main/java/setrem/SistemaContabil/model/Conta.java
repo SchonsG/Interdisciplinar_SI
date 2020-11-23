@@ -2,12 +2,19 @@ package setrem.SistemaContabil.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import setrem.SistemaContabil.converters.AtivoPassivoConverter;
+import setrem.SistemaContabil.converters.PatrimonialResultadoConverter;
 
 @Entity
 @Table(name = "CONTA")
@@ -21,10 +28,14 @@ public class Conta {
 
   private String CONTA;
 
-  private long CONTA_SUP;
+  @ManyToOne(cascade = {CascadeType.ALL})
+  @JoinColumn(name = "CONTA_SUP", referencedColumnName = "CONTA_ID")
+  private Conta CONTA_SUP;
 
+  @Convert(converter = PatrimonialResultadoConverter.class)
   private String PATRIMONIO_RESULT;
 
+  @Convert(converter = AtivoPassivoConverter.class)
   private String ATIVO_PASSIVO;
 
   @OneToMany(mappedBy = "CONTA_ID")
@@ -58,14 +69,6 @@ public class Conta {
 
   public void setCONTA(String cONTA) {
     CONTA = cONTA;
-  }
-
-  public long getCONTA_SUP() {
-    return CONTA_SUP;
-  }
-
-  public void setCONTA_SUP(long cONT_SUP) {
-    CONTA_SUP = cONT_SUP;
   }
 
   public String getPATRIMONIO_RESULT() {
@@ -108,29 +111,12 @@ public void setCREDITOS(List<Debito> cREDITOS) {
 	CREDITOS = cREDITOS;
 }
 
-@Override
-public int hashCode() {
-  final int prime = 31;
-  int result = 1;
-  result = prime * result + ((CONTA_ID == null) ? 0 : CONTA_ID.hashCode());
-  return result;
+public Conta getCONTA_SUP() {
+  return CONTA_SUP;
 }
 
-@Override
-public boolean equals(Object obj) {
-  if (this == obj)
-    return true;
-  if (obj == null)
-    return false;
-  if (getClass() != obj.getClass())
-    return false;
-  Conta other = (Conta) obj;
-  if (CONTA_ID == null) {
-    if (other.CONTA_ID != null)
-      return false;
-  } else if (!CONTA_ID.equals(other.CONTA_ID))
-    return false;
-  return true;
+public void setCONTA_SUP(Conta cONTA_SUP) {
+  CONTA_SUP = cONTA_SUP;
 }
 
 }

@@ -1,6 +1,7 @@
 <ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
   xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" 
+  xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
   <ui:define name="content">
     <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
@@ -22,7 +23,7 @@
               <h:panelGrid class='col'>
                 <p:row>
                 <h:outputLabel value="Descrição Histórico" />
-                <h:inputText class="form-control" placeholder="Histórico..."
+                <h:inputText class="form-control" a:placeholder="Exemplo: Saída de produtos depósito..."
                   value="#{historicoBean.historico.HISTORICO}" />
                 </p:row>
               </h:panelGrid>

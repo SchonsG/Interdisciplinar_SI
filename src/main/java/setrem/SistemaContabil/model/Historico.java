@@ -15,7 +15,7 @@ public class Historico {
   
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long HISTORICO_ID;
+  private Integer HISTORICO_ID;
 
   private String HISTORICO;
 
@@ -25,11 +25,11 @@ public class Historico {
   @OneToMany(mappedBy = "HISTORICO_ID")
   private List<Lancamento> LANCAMENTOS; 
 
-  public long getHISTORICO_ID() {
+  public Integer getHISTORICO_ID() {
     return HISTORICO_ID;
   }
 
-  public void setHISTORICO_ID(long hISTORICO_ID) {
+  public void setHISTORICO_ID(Integer hISTORICO_ID) {
     HISTORICO_ID = hISTORICO_ID;
   }
 

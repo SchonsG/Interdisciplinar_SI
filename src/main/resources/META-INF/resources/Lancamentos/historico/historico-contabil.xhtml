@@ -1,6 +1,6 @@
 <ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:define name="content">
         <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
@@ -10,7 +10,7 @@
                 <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
                 <nav aria-label="breadcrumb" style="font-size: 15px;">
                     <ol class="breadcrumb" style="background: #fefefe;">
-                        <li class="breadcrumb-item"><a href="index.xhtml">Página inicial</a></li>
+                        <li class="breadcrumb-item"><a href="/../../index.xhtml">Página inicial</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Históricos Contábeis</li>
                     </ol>
                 </nav>
@@ -22,16 +22,16 @@
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
-                                <button type="button" class="btn btn-primary btn-primary-azul"
-                                    onclick="location.href = 'novo-historico-contabil.xhtml'"><i
-                                        class="fas fa-plus"></i></button>
+                                <h:commandLink class="btn btn-link" action="#{historicoBean.novo()}">
+                                        <button type="button" class="btn btn-primary btn-primary-azul"><i class="fas fa-plus"></i></button>
+                                </h:commandLink>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="input-group">
                                 <h:inputText value="#{historicoBean.historicoPesquisa}" class="form-control"
-                                    placeholder="Busca Rápida por Histórico" aria-label="Busca Rápida"
+                                    a:placeholder="Busca rápida histórico" aria-label="Busca Rápida"
                                     aria-describedby="button-addon2" />
                                 <div class="input-group-append">
                                     <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary"

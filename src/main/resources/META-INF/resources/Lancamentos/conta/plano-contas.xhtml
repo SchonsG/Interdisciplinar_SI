@@ -1,6 +1,6 @@
 <ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:define name="content">
         <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
@@ -10,7 +10,7 @@
                 <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
                 <nav aria-label="breadcrumb" style="font-size: 15px;">
                     <ol class="breadcrumb" style="background: #fefefe;">
-                        <li class="breadcrumb-item"><a href="index.xhtml">Página inicial</a></li>
+                        <li class="breadcrumb-item"><a href="/../../index.xhtml">Página inicial</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Plano de Contas</li>
                     </ol>
                 </nav>
@@ -22,15 +22,17 @@
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
+                                <h:commandLink class="btn btn-link" action="#{contaBean.novo()}">
                                 <button type="button" class="btn btn-primary btn-primary-azul"
                                     onclick="location.href = 'nova-conta.xhtml'"><i class="fas fa-plus"></i></button>
+                                </h:commandLink>
                             </div>
                         </div>
 
                         <div class="col-4">
                             <div class="input-group">
                                 <h:inputText value="#{contaBean.contaPesquisa}" class="form-control"
-                                    placeholder="Busca Rápida por Nome Conta" aria-label="Busca Rápida"
+                                    a:placeholder="Busca rápida por nome" aria-label="Busca Rápida"
                                     aria-describedby="button-addon2" />
                                 <div class="input-group-append">
                                     <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary"
@@ -63,7 +65,7 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Conta Pai</f:facet>
-                                <h:outputText value="#{item.CONTA_SUP}" />
+                                <h:outputText value="#{item.CONTA_SUP.CONTA}" />
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Patrominial/Resultado</f:facet>

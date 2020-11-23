@@ -54,27 +54,22 @@
 
             <p:growl id="growl" sticky="true" showDetail="true" />
 
-            <p:wizard flowListener="#{userWizard.onFlowProcess}">
+            <p:wizard flowListener="#{operacaoWizardBean.onFlowProcess}">
               <p:tab id="personal" title="Operação">
                 <p:panel header="Tipo de Operação">
                   <p:messages />
                   <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Nome da Operação: *" />
-                    <p:inputText value="#{userWizard.user.firstname}" required="true" label="Firstname" />
+                    <p:inputText value="#{operacaoWizardBean.operacao.TP_OPERACAO}" required="true" label="Nome operação" />
+                    <!-- Lembrar de adicionar Histórico -->
                   </h:panelGrid>
                 </p:panel>
               </p:tab>
 
-              <p:tab id="address" title="Parâmetros">
+              <p:tab id="parametros" title="Parâmetros">
                 <p:panel header="Adicionar Parâmetros">
                   <p:messages />
                   <h:panelGrid columns="2" columnClasses="label, value">
-
-                    <!-- Aqui adicionar uma grid para mostrar os parametros adicionados,
-                        somente da pra tentar fazer isso depois que criar as classes.
-
-                        Vai uma conta e um histórico para cada registro na grid, podem ter n registros
-                    -->
 
                     <h:outputText value="Street: " />
                     <p:inputText value="#{userWizard.user.street}" />

@@ -1,6 +1,6 @@
 package setrem.SistemaContabil.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -25,7 +25,7 @@ public class Lancamento {
   @JoinColumn(name = "HISTORICO_ID")
   private Historico HISTORICO_ID;
 
-  private Date DATA;
+  private LocalDate DATA;
 
   private String COMPLEMENTO;
 
@@ -43,11 +43,11 @@ public class Lancamento {
     LCTO_ID = lCTO_ID;
   }
 
-  public Date getDATA() {
+  public LocalDate getDATA() {
     return DATA;
   }
 
-  public void setDATA(Date dATA) {
+  public void setDATA(LocalDate dATA) {
     DATA = dATA;
   }
 

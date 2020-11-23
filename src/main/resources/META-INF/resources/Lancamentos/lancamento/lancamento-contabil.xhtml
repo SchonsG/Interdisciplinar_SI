@@ -1,6 +1,6 @@
 <ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+    xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:define name="content">
         <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
@@ -10,7 +10,7 @@
                 <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
                 <nav aria-label="breadcrumb" style="font-size: 15px;">
                     <ol class="breadcrumb" style="background: #fefefe;">
-                        <li class="breadcrumb-item"><a href="index.xhtml">Página inicial</a></li>
+                        <li class="breadcrumb-item"><a href="/../../index.xhtml">Página inicial</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Lançamentos Contábeis</li>
                     </ol>
                 </nav>
@@ -18,12 +18,13 @@
 
 
                 <!--FORMULARIO DE PESQUISA-->
-                <form method="" action="/gs_company" novalidate="" class="needs-validation">
+                <h:form method="" novalidate="" class="needs-validation">
                     <div class="row justify-content-between">
                         <div class="col-4">
                             <div>
-                                <button type="button" class="btn btn-primary btn-primary-azul" onclick="location.href = 'novo-lancamento-contabil.xhtml'"><i
-                                        class="fas fa-plus"></i></button>
+                                <h:commandLink class="btn btn-link" action="#{lancamentoBean.novo()}">
+                                        <button type="button" class="btn btn-primary btn-primary-azul"><i class="fas fa-plus"></i></button>
+                                </h:commandLink>
                                 <button type="button" class="btn btn-primary btn-primary-azul" data-toggle="modal" data-target="#pesquisa"><i
                                         class="fas fa-search-plus"></i></button>
                             </div>
@@ -31,58 +32,52 @@
 
                         <div class="col-4">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Busca Rápida por Histórico"
-                                    aria-label="Busca Rápida" aria-describedby="button-addon2" />
+                                <h:inputText value="#{lancamentoBean.lancamentoPesquisa}" class="form-control"
+                                    a:placeholder="Busca rápida por histórico" aria-label="Busca Rápida"
+                                    aria-describedby="button-addon2" />
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">
-                                        <i class="fas fa-search"></i> Buscar</button>
+                                    <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary"
+                                        id="button-addon2" value="Pesquisar histórico"
+                                        action="#{lancamentoBean.Pesquisar()}">
+                                    </h:commandButton>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </h:form>
                 <!--FIM DO FORMULARIO-->
 
                 <!--INICIO DA TABELA-->
                 <div style="margin-top: 30px;"></div>
                 <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Código</th>
-                                <th scope="col">Data</th>
-                                <th scope="col">Histórico</th>
-                                <th scope="col">Valor</th>
-                                <th scope="col">Natureza</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!--LOOP DE DADOS-->
-                            <tr class="cursor">
-                                <th scope="row">1</th>
-                                <th scope="row">01/10/2020</th>
-                                <td>VALORES REFERENTE A SALARIOS</td>
-                                <td>400.000,00</td>
-                                <td>Credora</td>
-                                <td><i class="fas fa-edit" href="#"></i></td>
-                                <td  data-toggle="modal"
-                                data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
-                            </tr>
-                            <tr class="cursor">
-                                <th scope="row">2</th>
-                                <th scope="row">02/10/2020</th>
-                                <td>RECEBIMENTO NF Nº2171</td>
-                                <td>2.000,00</td>
-                                <td>Devedora</td>
-                                <td><i class="fas fa-edit" href="#"></i></td>
-                                <td  data-toggle="modal"
-                                data-dismiss="modal" data-target="#del"><i class="fas fa-trash"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                    <h:form>
+                        <h:dataTable value="#{lancamentoBean.lancamentos}" var="item" styleClass="table table-striped">
+                            <h:column>
+                                <f:facet name="header">Código</f:facet>
+                                <h:outputText value="#{item.LCTO_ID}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Data</f:facet>
+                                <h:outputText value="#{item.DATA}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Histórico</f:facet>
+                                <h:outputText value="#{item.HISTORICO_ID.HISTORICO}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandLink class="btn btn-link" action="#{lancamentoBean.editar(item)}"><i class="fas fa-edit"
+                                        href="#"></i></h:commandLink>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandLink class="btn btn-link" action="#{lancamentoBean.deletar(item)}"><i data-toggle="modal"
+                                        data-dismiss="modal" data-target="#del" class="fas fa-trash"></i>
+                                </h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                
                     <nav aria-label="" style="float: right;">
                         <ul class="pagination">
                             <!--LOOP DE PAGINACAO-->
