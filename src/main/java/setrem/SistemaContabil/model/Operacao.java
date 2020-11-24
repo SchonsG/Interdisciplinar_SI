@@ -53,4 +53,12 @@ public class Operacao {
     PARAMETROS = pARAMETROS;
   }
 
+  public Historico getHISTORICO_ID() {
+    return HISTORICO_ID;
+  }
+
+  public void setHISTORICO_ID(Historico hISTORICO_ID) {
+    HISTORICO_ID = hISTORICO_ID;
+  }
+
 }

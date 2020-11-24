@@ -1,0 +1,139 @@
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
+  xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+  <ui:define name="content">
+    <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    <title>Nova Operação Parametrizada</title>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+        <nav aria-label="breadcrumb" style="font-size: 15px;">
+          <ol class="breadcrumb" style="background: #fefefe;">
+            <li class="breadcrumb-item"><a href="operacao-parametrizada.xhtml">Operações Parametrizadas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Nova Operação Parametrizada</li>
+          </ol>
+        </nav>
+
+        <!--Buttons de acoes-->
+        <h:form>
+          
+          <div class='row'>
+            <div class="form-group col-md-4">
+              <label for="exampleFormControlSelect1">Nome da Operação</label>
+              <br />
+              <h:inputText class="form-control" a:placeholder="Exemplo: Operação venda de produto..."
+                  value="#{operacaoBean.operacao.TP_OPERACAO}" />
+            </div>
+            <div id="teste" class='col'>
+              <label for="exampleFormControlSelect1">Descrição Histórico</label>
+              <br />
+              <p:autoComplete value="#{operacaoBean.operacao.HISTORICO_ID}" completeMethod="#{operacaoBean.complete}"
+                var="historico" itemLabel="#{historico.HISTORICO}" itemValue="#{historico}"
+                converter="#{historicoConverter}" />
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='col'>
+              <div class='btn-toolbar justify-content-start'>
+                <button type="button" class="btn btn-primary btn-primary-azul" data-toggle="modal"
+                  data-target="#modalParametro"><i class="fas">Adicionar parâmetro</i></button>
+              </div>
+            </div>
+          </div>
+          <br />
+
+          <h:dataTable var="item" value="#{operacaoBean.parametros}" styleClass="table table-striped">
+            <h:column>
+              <f:facet name="header">Parâmetro ID</f:facet>
+              <h:outputText value="#{item.PARAM_ID}" />
+            </h:column>
+
+            <h:column>
+              <f:facet name="header">Conta</f:facet>
+              <h:outputText value="#{item.CONTA_ID.CONTA}" />
+            </h:column>
+          </h:dataTable>
+
+          <div class="modal-footer">
+            <h:button value="Cancelar" class="btn btn-danger" outcome="operacao-parametrizada">
+            </h:button>
+            <h:commandButton value="Adicionar" class="btn btn-success" action="#{operacaoBean.save()}">
+              <!-- <i class=""></i> -->
+            </h:commandButton>
+          </div>
+
+        </h:form>
+        <br />
+      </div>
+    </div>
+
+    <!-- Modal Débitos -->
+    <div class="modal fade bd-example-modal-lg" id="modalParametro" tabindex="-1" role="dialog"
+      aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h:form id="f2">
+                <div class="form-group">
+                  <div class="input-group col-md-8">
+                    <h:inputText value="#{operacaoBean.contaPesquisa}" class="form-control"
+                      a:placeholder="Busca rápida conta" aria-label="Busca Rápida" aria-describedby="button-addon2" />
+                    <div class="input-group-append">
+                      <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary" id="button-addon2"
+                        value="Pesquisar conta" action="#{operacaoBean.PesquisarConta()}">
+                        <f:ajax execute="@this" render=":formId:f2" />
+                      </h:commandButton>
+                    </div>
+                  </div>
+              </div>
+
+              <div style="margin-top: 30px;">
+                <div class="table-responsive">
+                  <h:dataTable var="item" value="#{operacaoBean.contas}" styleClass="table table-striped"
+                    id="dataTableGroup">
+                    <h:column>
+                      <f:facet name="header">Código</f:facet>
+                      <h:outputText value="#{item.CONTA_ID}" />
+                    </h:column>
+                    <h:column>
+                      <f:facet name="header">Conta</f:facet>
+                      <h:commandLink execute="@form" render="@form"
+                        action="#{operacaoBean.selecionarConta(item)}">
+                        <f:ajax execute="@this" render="containerId" />
+                        <h:outputText value="#{item.CONTA}" />
+                      </h:commandLink>
+                    </h:column>
+                  </h:dataTable>
+                </div>
+              </div>
+
+              <div class="modal-footer">
+                <h:commandButton value="Cancelar" data-dismiss="modal" class="btn btn-danger"
+                  action="#{operacaoBean.cancelarConta()}">
+                </h:commandButton> 
+                <h:commandButton value="Adicionar" class="btn btn-success" action="#{operacaoBean.adicionarConta()}">
+                </h:commandButton>
+              </div>
+
+            </h:form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+      const div = document.getElementById('teste');
+      const element = div.querySelector(".ui-autocomplete-input")
+      const element2 = div.querySelector(".ui-autocomplete")
+      element.setAttribute("style", "width: 100%")
+      element2.setAttribute("style", "width: 90%")
+
+    </script>
+
+    <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+  </ui:define>
+</ui:composition>
