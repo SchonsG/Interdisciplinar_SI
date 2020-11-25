@@ -182,7 +182,8 @@ public class LancamentoBean {
 
   // Crédito
   public void selecionarContaCredito(Conta conta){
-    this.credito.setCONTA_ID(conta);
+    Conta contaCred = repositoryConta.findById(conta.getCONTA_ID()).get();
+    this.credito.setCONTA_ID(contaCred);
   }
 
   public CreditoRepository getRepositoryCredito() {
@@ -220,8 +221,9 @@ public class LancamentoBean {
 
   // Débito
   public void selecionarContaDebito(Conta conta){
-    this.debito.setCONTA_ID(conta);
-    System.out.println(debito);
+    Conta contaDeb = repositoryConta.findById(conta.getCONTA_ID()).get();
+    this.debito.setCONTA_ID(contaDeb);
+    System.out.println(debito.getCONTA_ID().getCONTA());
   }
 
   public void adicionarDebito() {
