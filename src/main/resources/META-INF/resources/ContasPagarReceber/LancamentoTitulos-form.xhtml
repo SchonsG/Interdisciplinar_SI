@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html
+   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
+<h:head>
+   <title>Lançamento</title>
+</h:head>
+<h:body>
+   <h:form>
+      <h:panelGrid columns="2">
+         <h:outputText value="ID" /> 
+         <h:inputText value="#{lanctitulos.conta.id}" />
+
+         <h:outputText value="Tipo de Operação:" /> 
+         <h:inputText value="#{lanctitulos.conta.tipoOperacao}" />
+
+         <h:outputText value="Cód. Cliente/Fornecedor:" /> 
+         <h:inputText value="#{lanctitulos.conta.cod_clienteFornecedor}" />
+
+         <h:outputText value="Nome:" /> 
+         <h:inputText value="#{lanctitulos.conta.nome_clienteFornecedor}" />
+
+         <h:outputText value="Cód. Conta Debito:" /> 
+         <h:inputText value="#{lanctitulos.conta.cod_contaDeb}" />
+
+         <h:outputText value="Cód. Conta Credito:" /> 
+         <h:inputText value="#{lanctitulos.conta.cod_contaCred}" />
+
+         <h:outputText value="Número Documento" /> 
+         <h:inputText value="#{lanctitulos.conta.numDocumento}" />
+
+         <h:outputText value="Data Lançamento:" /> 
+         <h:inputText value="#{lanctitulos.conta.dataLancamento}" />
+
+         <h:outputText value="Data Vencimento:" /> 
+         <h:inputText value="#{lanctitulos.conta.dataVencimento}" />
+
+         <h:outputText value="Data Pagamento" /> 
+         <h:inputText value="#{lanctitulos.conta.dataPagamento}" />
+
+         <h:outputText value="Forma Pagamento:" /> 
+         <h:inputText value="#{lanctitulos.conta.formaPagamento}" />
+
+         <h:outputText value="Nº de Parcelas:" /> 
+         <h:inputText value="#{lanctitulos.conta.numParcelas}" />
+
+         <h:outputText value="Valor" /> 
+         <h:inputText value="#{lanctitulos.conta.valorDocumento}" />
+
+         <h:outputText value="Cód. Tipo Documento:" /> 
+         <h:inputText value="#{lanctitulos.conta.cod_tipoDocumento}" />
+
+         <h:outputText value="Cód. Histórico:" /> 
+         <h:inputText value="#{lanctitulos.conta.cod_Historico}" />
+
+         <h:commandButton value="Salvar" action="#{clienteBean.save()}"></h:commandButton>
+
+         <p:column headerText="">
+            <h:commandButton value="Excluir" action="#{clienteBean.delete(item)}" 
+               onclick="return confirm('Excluir?')"
+            />
+         </p:column>
+
+         <p:column headerText="">
+            <h:commandButton value="Selecionar" action="#{clienteBean.select(item)}" />
+         </p:column>
+         
+      </h:panelGrid>
+</h:form>
+</h:body>
+</html>
