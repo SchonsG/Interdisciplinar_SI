@@ -17,6 +17,8 @@ public class Parametro {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long PARAM_ID;
 
+  private String TIPO;
+
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "CONTA_ID")
   private Conta CONTA_ID;
@@ -47,6 +49,14 @@ public class Parametro {
 
   public void setTP_OPERACAO_ID(Operacao tP_OPERACAO_ID) {
     TP_OPERACAO_ID = tP_OPERACAO_ID;
+  }
+
+  public String getTIPO() {
+    return TIPO;
+  }
+
+  public void setTIPO(String tIPO) {
+    TIPO = tIPO;
   }
 
 }

@@ -33,12 +33,14 @@ public class LancamentoBean {
   // Créditos
   @Autowired
   private CreditoRepository repositoryCredito;
+  
   private Credito credito = new Credito();
   private List<Credito> creditos = new ArrayList<>();
 
   // Débitos
   @Autowired
   private DebitoRepository repositoryDebito;
+
   private Debito debito = new Debito();
   private List<Debito> debitos = new ArrayList<>();
 
@@ -76,23 +78,17 @@ public class LancamentoBean {
   }
 
   public void Pesquisar() {
-    lancamentos = repositoryLancamento.findAll(); //repositoryLancamento.findByHISTORICOContaining(this.lancamentoPesquisa);
-  }
-
-  public void deletar(Lancamento lanc) {
-    repositoryLancamento.delete(lanc);
+    lancamentos = repositoryLancamento.findAll();
   }
 
   public String editar(Lancamento lanc) { 
     this.lancamento = lanc;
+    this.creditos = lanc.getCREDITOS();
+    this.debitos = lanc.getDEBITOS();
     return "editar-lancamento-contabil.xhtml?faces-redirect=true&includeViewParams=true";
   }
   
   public String save() {
-
-    System.out.println(lancamento.getCOMPLEMENTO());
-    System.out.println(lancamento.getDATA());
-    System.out.println(lancamento.getHISTORICO_ID());
   
     repositoryLancamento.save(lancamento);
 
@@ -100,7 +96,7 @@ public class LancamentoBean {
       cred.setLCTO_ID(lancamento);
       repositoryCredito.save(cred);
     }
- 
+
     for (Debito deb: debitos) {
       deb.setLCTO_ID(lancamento);
       repositoryDebito.save(deb);
@@ -113,6 +109,23 @@ public class LancamentoBean {
     this.debitos.clear();
 
     return "lancamento-contabil.xhtml?faces-redirect=true&includeViewParams=true";
+  }
+
+  public void deletar(Lancamento lanc) {
+
+    List<Credito> credDeletar = lanc.getCREDITOS();
+    List<Debito> debDeletar = lanc.getDEBITOS();
+
+    for (Credito cred : credDeletar) {
+      repositoryCredito.delete(cred);
+    }
+
+    for (Debito deb : debDeletar) {
+      repositoryDebito.delete(deb);
+    }
+
+    repositoryLancamento.delete(lanc);
+
   }
 
   public void setRepositoryLancamento(LancamentoRepository repositoryLancamento) {
@@ -128,7 +141,7 @@ public class LancamentoBean {
   }
 
   public List<Lancamento> getLancamentos() {
-    return lancamentos;
+    return lancamentos = repositoryLancamento.findAll();
   }
 
   public void setLancamentos(List<Lancamento> lancamentos) {
@@ -223,7 +236,6 @@ public class LancamentoBean {
   public void selecionarContaDebito(Conta conta){
     Conta contaDeb = repositoryConta.findById(conta.getCONTA_ID()).get();
     this.debito.setCONTA_ID(contaDeb);
-    System.out.println(debito.getCONTA_ID().getCONTA());
   }
 
   public void adicionarDebito() {
@@ -276,21 +288,5 @@ public class LancamentoBean {
   public void setHistoricoSelecionado(Historico historicoSelecionado) {
     this.historicoSelecionado = historicoSelecionado;
   }
-
- 
-
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
 
 }

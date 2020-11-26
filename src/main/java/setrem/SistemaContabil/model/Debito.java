@@ -1,8 +1,5 @@
 package setrem.SistemaContabil.model;
 
-import java.math.BigDecimal;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,15 +16,15 @@ public class Debito {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long LCTO_DEB_ID;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne()
   @JoinColumn(name = "LCTO_ID")
   private Lancamento LCTO_ID;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne()
   @JoinColumn(name = "CONTA_ID")
   private Conta CONTA_ID;
 
-  private BigDecimal VALOR;
+  private Integer VALOR;
 
   public long getLCTO_DEB_ID() {
     return LCTO_DEB_ID;
@@ -53,11 +50,11 @@ public class Debito {
     CONTA_ID = cONTA_ID;
   }
 
-  public BigDecimal getVALOR() {
+  public Integer getVALOR() {
     return VALOR;
   }
 
-  public void setVALOR(BigDecimal vALOR) {
+  public void setVALOR(Integer vALOR) {
     VALOR = vALOR;
   }
 

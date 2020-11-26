@@ -7,18 +7,18 @@ public class PatrimonialResultadoConverter implements AttributeConverter<String,
   public String convertToDatabaseColumn(String value) {
 
     if ("Patrimonial".equals(value))
-      return "P";
+      return "PA";
     else if ("Resultado".equals(value))
-      return "R";
+      return "RE";
 
     return null;
   }
 
   @Override
   public String convertToEntityAttribute(String value) {
-    if ("P".equals(value))
+    if ("PA".equals(value))
       return "Patrimonial";
-    else if ("R".equals(value))
+    else if ("RE".equals(value))
       return "Resultado";
 
     return null;

@@ -5,25 +5,20 @@
 
   <ui:define name="content">
     <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
-    <title>Novo Lançamento Contábil</title>
+    <title>Editar Lançamento Contábil</title>
     <div id="page-content-wrapper">
       <div class="container-fluid">
         <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
         <nav aria-label="breadcrumb" style="font-size: 15px;">
           <ol class="breadcrumb" style="background: #fefefe;">
             <li class="breadcrumb-item"><a href="lancamento-contabil.xhtml">Lançamentos Contábeis</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Novo Lançamento</li>
+            <li class="breadcrumb-item active" aria-current="page">Editar Lançamento</li>
           </ol>
         </nav>
 
         <!--Buttons de acoes-->
         <h:form>
           <div class='row'>
-            <div class="form-group col-md-2">
-              <label for="exampleFormControlSelect1">Cód. Histórico</label>
-              <h:outputText class="form-control readonly" readonly=""
-                value="#{lancamentoBean.historicoSelecionado.HISTORICO_ID}" />
-            </div>
             <div id="teste" class='col'>
               <label for="exampleFormControlSelect1">Descrição Histórico</label>
               <br />
@@ -32,6 +27,7 @@
                 converter="#{historicoConverter}" />
             </div>
           </div>
+          <br />
           <div class='row'>
             <div class="form-group col-md-2">
               <label for="exampleFormControlInput1">Data Lançamento</label>
@@ -52,7 +48,7 @@
             </div>
           </div>
 
-          <h:dataTable var="item" value="#{lancamentoBean.creditos}" styleClass="table table-striped">
+          <h:dataTable id="tableCredito" var="item" value="#{lancamentoBean.creditos}" styleClass="table table-striped">
             <h:column>
               <f:facet name="header">Conta Crédito</f:facet>
               <h:outputText value="#{item.CONTA_ID.CONTA}" />
@@ -60,12 +56,15 @@
 
             <h:column>
               <f:facet name="header">Valor</f:facet>
-              <h:outputText value="#{item.VALOR}" />
+              <h:outputText value="R$ #{item.VALOR}">
+                <f:convertNumber groupingUsed="true"
+                 maxFractionDigits="2"  />
+              </h:outputText>
             </h:column>
           </h:dataTable>
 
 
-          <h:dataTable var="item" value="#{lancamentoBean.debitos}" styleClass="table table-striped">
+          <h:dataTable id="tableDebito" var="item" value="#{lancamentoBean.debitos}" styleClass="table table-striped">
             <h:column>
               <f:facet name="header">Conta Débito</f:facet>
               <h:outputText value="#{item.CONTA_ID.CONTA}" />
@@ -73,7 +72,10 @@
 
             <h:column>
               <f:facet name="header">Valor</f:facet>
-              <h:outputText value="#{item.VALOR}" />
+              <h:outputText value="R$ #{item.VALOR}">
+                <f:convertNumber groupingUsed="true"
+                 maxFractionDigits="2"  />
+              </h:outputText>
             </h:column>
           </h:dataTable>
 
@@ -86,7 +88,7 @@
           <div class="modal-footer">
             <h:button value="Cancelar" class="btn btn-danger" outcome="lancamento-contabil">
             </h:button>
-            <h:commandButton value="Adicionar" class="btn btn-success" action="#{lancamentoBean.save()}">
+            <h:commandButton value="Salvar" class="btn btn-success" action="#{lancamentoBean.save()}">
               <!-- <i class=""></i> -->
             </h:commandButton>
           </div>
@@ -95,6 +97,7 @@
         <br />
       </div>
     </div>
+
 
 
     <!-- Modal Créditos -->
@@ -106,16 +109,17 @@
             <h:form>
               <div class='row justify-content-around'>
                 <div class="form-group">
-                  <p:inputNumber a:placeholder="Valor, ex: R$100,00" decimalPlaces="2"
+                  <p:inputNumber id="valueinput1" a:placeholder="Valor, ex: R$100,00" decimalPlaces="2"
                     value="#{lancamentoBean.credito.VALOR}" />
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <h:inputText value="#{lancamentoBean.contaPesquisa}" class="form-control"
+                    <h:inputText id="pesquisa1" value="#{lancamentoBean.contaPesquisa}" class="form-control"
                       a:placeholder="Busca rápida conta" aria-label="Busca Rápida" aria-describedby="button-addon2" />
                     <div class="input-group-append">
                       <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary" id="button-addon2"
-                        value="Pesquisar conta" action="#{lancamentoBean.PesquisarConta()}">
+                        value="Pesquisar conta">
+                        <f:ajax execute="pesquisa1" render="j_idt30:dataTableGroup2" listener="#{lancamentoBean.PesquisarConta()}"/>
                       </h:commandButton>
                     </div>
                   </div>
@@ -124,7 +128,7 @@
 
               <div style="margin-top: 30px;">
                 <div class="table-responsive">
-                  <h:dataTable var="item" value="#{lancamentoBean.contas}" styleClass="table table-striped">
+                  <h:dataTable var="item" value="#{lancamentoBean.contas}" styleClass="table table-striped" id="dataTableGroup2">
                     <h:column>
                       <f:facet name="header">Código</f:facet>
                       <h:outputText value="#{item.CONTA_ID}" />
@@ -142,11 +146,15 @@
               </div>
 
               <div class="modal-footer">
-                <h:commandButton value="Cancelar" data-dismiss="modal" class="btn btn-danger"
-                  action="#{lancamentoBean.cancelarCredito()}">
+                <h:commandButton value="Cancelar" class="btn btn-danger"
+                  onclick="$('#modalCredito').modal('hide')">
+                  <f:ajax execute="@this" render="@none" listener="#{lancamentoBean.cancelarCredito()}" />
                 </h:commandButton>  
-                <h:commandButton value="Adicionar" class="btn btn-success"
-                  action="#{lancamentoBean.adicionarCredito()}">
+              
+                <h:commandButton value="Adicionar" class="btn btn-success" onclick="setTimeout(() => {
+                  $('#modalCredito').modal('hide')
+                }, 300);">
+                  <f:ajax execute="valueinput1" render="j_idt6:tableCredito" listener="#{lancamentoBean.adicionarCredito()}"/>
                 </h:commandButton>
               </div>
 
@@ -165,17 +173,17 @@
             <h:form id="f2">
               <div class='row justify-content-around'>
                 <div class="form-group">
-                  <p:inputNumber a:placeholder="Valor, ex: R$100,00" decimalPlaces="2"
+                  <p:inputNumber id="valueinput2" a:placeholder="Valor, ex: R$100,00" decimalPlaces="2"
                     value="#{lancamentoBean.debito.VALOR}" />
                 </div>
                 <div class="form-group">
                   <div class="input-group">
-                    <h:inputText value="#{lancamentoBean.contaPesquisa}" class="form-control"
+                    <h:inputText id="pesquisa2" value="#{lancamentoBean.contaPesquisa}" class="form-control"
                       a:placeholder="Busca rápida conta" aria-label="Busca Rápida" aria-describedby="button-addon2" />
                     <div class="input-group-append">
                       <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary" id="button-addon2"
-                        value="Pesquisar conta" action="#{lancamentoBean.PesquisarConta()}">
-                        <f:ajax execute="@this" render=":formId:f2" />
+                        value="Pesquisar conta" >
+                        <f:ajax execute="pesquisa2" render="f2:dataTableGroup" listener="#{lancamentoBean.PesquisarConta()}"/>
                       </h:commandButton>
                     </div>
                   </div>
@@ -203,10 +211,16 @@
               </div>
 
               <div class="modal-footer">
-                <h:commandButton value="Cancelar" data-dismiss="modal" class="btn btn-danger"
-                  action="#{lancamentoBean.cancelarDebito()}">
-                </h:commandButton> 
-                <h:commandButton value="Adicionar" class="btn btn-success" action="#{lancamentoBean.adicionarDebito()}">
+                
+                <h:commandButton value="Cancelar" class="btn btn-danger"
+                  onclick="$('#modalDebito').modal('hide')">
+                  <f:ajax execute="@this" render="@none" listener="#{lancamentoBean.cancelarDebito()}" />
+                </h:commandButton>  
+              
+                <h:commandButton value="Adicionar" class="btn btn-success" onclick="setTimeout(() => {
+                  $('#modalDebito').modal('hide')
+                }, 300);">
+                  <f:ajax execute="valueinput2" render="j_idt6:tableDebito" listener="#{lancamentoBean.adicionarDebito()}"/>
                 </h:commandButton>
               </div>
 

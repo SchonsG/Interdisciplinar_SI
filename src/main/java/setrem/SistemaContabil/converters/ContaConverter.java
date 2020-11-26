@@ -18,13 +18,25 @@ public class ContaConverter implements Converter {
 
    @Override
    public Object getAsObject(FacesContext context, UIComponent component, String value) {
-      Conta conta = repository.findById(Integer.valueOf(value)).get();
 
-      return conta;
+      Conta conta = new Conta();
+
+      if (!value.equals("")) {
+         return conta = repository.findById(Integer.valueOf(value)).get();
+      } else {
+         return null;
+      }
+
    }
 
    @Override
    public String getAsString(FacesContext context, UIComponent component, Object value) {
-      return ((Conta) value).getCONTA_ID().toString();
+ //     return ((Conta) value).getCONTA_ID().toString();
+
+      if (value == null) {
+         return "";
+      } else {
+         return "" + ( (Conta) value ).getCONTA_ID();
+      }
    }
 }

@@ -39,7 +39,7 @@
               <div class="col col-md-3">
                 <h:outputLabel for="@next" value="Conta superior:" />
                 <h:selectOneMenu value="#{contaBean.conta.CONTA_SUP}" converter="#{contaConverter}" class="form-control">
-                  <!-- <f:selectItem itemValue="#{null}" itemLabel="Select" /> -->
+                  <f:selectItem itemLabel="" noSelectionOption="true" />
                   <f:selectItems value="#{contaBean.contas}" var="item" itemLabel="#{item.CONTA}" />
                 </h:selectOneMenu>
               </div>

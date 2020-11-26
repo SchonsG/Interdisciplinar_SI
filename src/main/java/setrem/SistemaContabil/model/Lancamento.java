@@ -21,7 +21,7 @@ public class Lancamento {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long LCTO_ID;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne()
   @JoinColumn(name = "HISTORICO_ID")
   private Historico HISTORICO_ID;
 

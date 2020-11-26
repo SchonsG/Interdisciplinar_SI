@@ -7,18 +7,18 @@ public class AtivoPassivoConverter implements AttributeConverter<String, String>
   public String convertToDatabaseColumn(String value) {
 
     if ("Passivo".equals(value))
-      return "P";
+      return "PA";
     else if ("Ativo".equals(value))
-      return "A";
+      return "AT";
 
     return null;
   }
 
   @Override
   public String convertToEntityAttribute(String value) {
-    if ("P".equals(value))
+    if ("PA".equals(value))
       return "Passivo";
-    else if ("A".equals(value))
+    else if ("AT".equals(value))
       return "Ativo";
 
     return null;
