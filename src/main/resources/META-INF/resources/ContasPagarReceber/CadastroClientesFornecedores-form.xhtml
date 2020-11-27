@@ -92,8 +92,8 @@
              <br />
 
             <div class="modal-footer">
-                  <h:commandButton value="Salvar" class="btn btn-success" action="#{cadcli.save()}"></h:commandButton>
- <h:commandButton value="Excluir registro selecionado" class="btn btn-danger" action="#{clienteBean.delete(item)}" onclick="return confirm('Deseja realmente excluir a linha selecionada?')" />
+         <h:commandButton value="Salvar" class="btn btn-success" action="#{cadcli.save()}"></h:commandButton>
+         <h:commandButton value="Excluir registro" class="btn btn-danger" action="#{cadcli.delete(item)}" onclick="return confirm('Deseja realmente excluir a linha selecionada?')"></h:commandButton>
             </div>
 
           </h:form>
@@ -111,18 +111,8 @@
            
                      <p:column headerText="CPF/CNPJ">
                         <h:outputText value="#{item.cpf_cnpj}" />
-                     </p:column>
-           
-                     <p:column headerText="">
-                        <h:commandButton value="Selecionar" action="#{cadcli.select(item)}" />
-                     </p:column>
-           
-                     <p:column headerText="">
-                        <h:commandButton value="Excluir" action="#{cadcli.delete(item)}"
-                           onclick="return confirm('Excluir?')"
-                        />
-                     </p:column>
-           
+                     </p:column>       
+                     
                   </p:dataTable>
 
       </div>
