@@ -83,8 +83,8 @@ public class LancamentoBean {
 
   public String editar(Lancamento lanc) { 
     this.lancamento = lanc;
-    this.creditos = lanc.getCREDITOS();
-    this.debitos = lanc.getDEBITOS();
+    this.creditos.addAll(lanc.getCREDITOS());
+    this.debitos.addAll(lanc.getDEBITOS());
     return "editar-lancamento-contabil.xhtml?faces-redirect=true&includeViewParams=true";
   }
   
@@ -112,20 +112,9 @@ public class LancamentoBean {
   }
 
   public void deletar(Lancamento lanc) {
-
-    List<Credito> credDeletar = lanc.getCREDITOS();
-    List<Debito> debDeletar = lanc.getDEBITOS();
-
-    for (Credito cred : credDeletar) {
-      repositoryCredito.delete(cred);
-    }
-
-    for (Debito deb : debDeletar) {
-      repositoryDebito.delete(deb);
-    }
-
+    repositoryCredito.deleteAll(lanc.getCREDITOS());
+    repositoryDebito.deleteAll(lanc.getDEBITOS());
     repositoryLancamento.delete(lanc);
-
   }
 
   public void setRepositoryLancamento(LancamentoRepository repositoryLancamento) {
@@ -232,6 +221,15 @@ public class LancamentoBean {
     this.credito = new Credito();
   }
 
+  public void editarCredito(Credito cred) {
+    this.credito = cred;
+    this.creditos.remove(cred);
+  }
+
+  public void excluirCredito(Credito cred) {
+    this.creditos.remove(cred);
+  }
+
   // Débito
   public void selecionarContaDebito(Conta conta){
     Conta contaDeb = repositoryConta.findById(conta.getCONTA_ID()).get();
@@ -269,6 +267,15 @@ public class LancamentoBean {
 
   public void cancelarDebito() {
     this.debito = new Debito();
+  }
+
+  public void editarDebito(Debito deb) {
+    this.debito = deb;
+    this.debitos.remove(deb);
+  }
+
+  public void excluirDebito(Debito deb) {
+    this.debitos.remove(deb);
   }
 
 

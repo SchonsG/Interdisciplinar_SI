@@ -61,6 +61,23 @@
                  maxFractionDigits="2"  />
               </h:outputText>
             </h:column>
+
+            <h:column>
+              <f:facet name="header"></f:facet>
+              <h:commandLink id="editarCredito" class="btn btn-link" onclick="$('#modalCredito').modal('show')">
+              <i class="fas fa-edit" href="#"></i>
+                <f:ajax execute="editarCredito" listener="#{lancamentoBean.editarCredito(item)}"/>
+              </h:commandLink>
+            </h:column>
+
+            <h:column>
+              <f:facet name="header"></f:facet>
+              <p:commandLink update="j_idt6:tableCredito" class="btn btn-link" >
+                <i href="#" class="fas fa-trash"></i>
+                <f:ajax execute="@this, j_idt6:tableCredito" render="j_idt6:tableCredito" listener="#{lancamentoBean.excluirCredito(item)}"/>
+            </p:commandLink>
+            </h:column>
+
           </h:dataTable>
 
 
@@ -69,14 +86,29 @@
               <f:facet name="header">Conta Débito</f:facet>
               <h:outputText value="#{item.CONTA_ID.CONTA}" />
             </h:column>
-
+          
             <h:column>
               <f:facet name="header">Valor</f:facet>
               <h:outputText value="R$ #{item.VALOR}">
-                <f:convertNumber groupingUsed="true"
-                 maxFractionDigits="2"  />
+                <f:convertNumber groupingUsed="true" maxFractionDigits="2" />
               </h:outputText>
             </h:column>
+          
+            <h:column>
+              <f:facet name="header"></f:facet>
+              <h:commandLink id="editarDebito" class="btn btn-link" onclick="$('#modalDebito').modal('show')">
+              <i class="fas fa-edit" href="#"></i>
+                <f:ajax execute="editarDebito" listener="#{lancamentoBean.editarDebito(item)}"/>
+              </h:commandLink>
+            </h:column>
+
+            <h:column>
+              <f:facet name="header"></f:facet>
+              <h:commandLink id="excluirDebito" class="btn btn-link"><i href="#" class="fas fa-trash"></i>
+              <f:ajax execute="@this, j_idt6:tableDebito" render="j_idt6:tableDebito" listener="#{lancamentoBean.excluirDebito(item)}"/>
+              </h:commandLink>
+            </h:column>
+
           </h:dataTable>
 
           <div class="form-group">
@@ -136,7 +168,7 @@
                     <h:column>
                       <f:facet name="header">Conta</f:facet>
                       <h:commandLink execute="@form" render="@form"
-                        action="#{lancamentoBean.selecionarContaCredito(item)}">
+                        action="#{lancamentoBean.selecionarContaCredito(item)}" onclick="return alert('Selecionado!')">
                         <f:ajax execute="@this" render="containerId" />
                         <h:outputText value="#{item.CONTA}" />
                       </h:commandLink>
@@ -201,7 +233,7 @@
                     <h:column>
                       <f:facet name="header">Conta</f:facet>
                       <h:commandLink execute="@form" render="@form"
-                        action="#{lancamentoBean.selecionarContaDebito(item)}">
+                        action="#{lancamentoBean.selecionarContaDebito(item)}" onclick="return alert('Selecionado!')">
                         <f:ajax execute="@this" render="containerId" />
                         <h:outputText value="#{item.CONTA}" />
                       </h:commandLink>
@@ -211,7 +243,6 @@
               </div>
 
               <div class="modal-footer">
-                
                 <h:commandButton value="Cancelar" class="btn btn-danger"
                   onclick="$('#modalDebito').modal('hide')">
                   <f:ajax execute="@this" render="@none" listener="#{lancamentoBean.cancelarDebito()}" />

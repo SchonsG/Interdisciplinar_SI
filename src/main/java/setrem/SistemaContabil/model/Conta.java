@@ -41,11 +41,11 @@ public class Conta {
   @OneToMany(mappedBy = "CONTA_ID")
   private List<Parametro> PARAMETROS;
 
-/*   @OneToMany(mappedBy = "CONTA_ID")
+  @OneToMany(mappedBy = "CONTA_ID")
   private List<Credito> DEBITOS;
 
   @OneToMany(mappedBy = "CONTA_ID")
-  private List<Debito> CREDITOS; */
+  private List<Debito> CREDITOS;
 
   public Integer getCONTA_ID() {
     return CONTA_ID;
@@ -95,7 +95,7 @@ public void setPARAMETROS(List<Parametro> pARAMETROS) {
 	PARAMETROS = pARAMETROS;
 }
 
-/* public List<Credito> getDEBITOS() {
+public List<Credito> getDEBITOS() {
 	return DEBITOS;
 }
 
@@ -109,7 +109,7 @@ public List<Debito> getCREDITOS() {
 
 public void setCREDITOS(List<Debito> cREDITOS) {
 	CREDITOS = cREDITOS;
-} */
+}
 
 public Conta getCONTA_SUP() {
   return CONTA_SUP;

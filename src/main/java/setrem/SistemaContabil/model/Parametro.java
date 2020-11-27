@@ -19,11 +19,11 @@ public class Parametro {
 
   private String TIPO;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne()
   @JoinColumn(name = "CONTA_ID")
   private Conta CONTA_ID;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne()
   @JoinColumn(name = "TP_OPERACAO_ID")
   private Operacao TP_OPERACAO_ID;
 

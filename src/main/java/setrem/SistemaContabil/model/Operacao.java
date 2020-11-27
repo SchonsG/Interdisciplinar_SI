@@ -22,7 +22,7 @@ public class Operacao {
 
   private String TP_OPERACAO;
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne()
   @JoinColumn(name = "HISTORICO_ID")
   private Historico HISTORICO_ID;
 

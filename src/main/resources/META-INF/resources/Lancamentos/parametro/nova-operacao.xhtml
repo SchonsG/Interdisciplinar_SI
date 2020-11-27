@@ -45,7 +45,7 @@
           </div>
           <br />
 
-          <h:dataTable var="item" value="#{operacaoBean.parametros}" styleClass="table table-striped">
+          <h:dataTable id="parametros" var="item" value="#{operacaoBean.parametros}" styleClass="table table-striped">
             <h:column>
               <f:facet name="header">Parâmetro ID</f:facet>
               <h:outputText value="#{item.PARAM_ID}" />
@@ -60,7 +60,7 @@
           <div class="modal-footer">
             <h:button value="Cancelar" class="btn btn-danger" outcome="operacao-parametrizada">
             </h:button>
-            <h:commandButton value="Adicionar" class="btn btn-success" action="#{operacaoBean.save()}">
+            <h:commandButton value="Adicionar" class="btn btn-success" action="#{operacaoBean.salvar()}">
               <!-- <i class=""></i> -->
             </h:commandButton>
           </div>
@@ -79,12 +79,12 @@
             <h:form id="f2">
                 <div class="form-group">
                   <div class="input-group col-md-8">
-                    <h:inputText value="#{operacaoBean.contaPesquisa}" class="form-control"
+                    <h:inputText id="pesquisa" value="#{operacaoBean.contaPesquisa}" class="form-control"
                       a:placeholder="Busca rápida conta" aria-label="Busca Rápida" aria-describedby="button-addon2" />
                     <div class="input-group-append">
                       <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary" id="button-addon2"
-                        value="Pesquisar conta" action="#{operacaoBean.PesquisarConta()}">
-                        <f:ajax execute="@this" render=":formId:f2" />
+                        value="Pesquisar conta">
+                        <f:ajax execute="pesquisa" render="f2:dataTableGroup" listener="#{operacaoBean.PesquisarConta()}"/>
                       </h:commandButton>
                     </div>
                   </div>
@@ -101,7 +101,7 @@
                     <h:column>
                       <f:facet name="header">Conta</f:facet>
                       <h:commandLink execute="@form" render="@form"
-                        action="#{operacaoBean.selecionarConta(item)}">
+                        action="#{operacaoBean.selecionarConta(item)}" onclick="return alert('Selecionado!')">
                         <f:ajax execute="@this" render="containerId" />
                         <h:outputText value="#{item.CONTA}" />
                       </h:commandLink>
@@ -111,10 +111,14 @@
               </div>
 
               <div class="modal-footer">
-                <h:commandButton value="Cancelar" data-dismiss="modal" class="btn btn-danger"
-                  action="#{operacaoBean.cancelarConta()}">
+                <h:commandButton value="Cancelar" class="btn btn-danger"
+                onclick="$('#modalParametro').modal('hide')">
+                  <f:ajax execute="@this" render="@none" listener="#{operacaoBean.cancelarConta()}"/>
                 </h:commandButton> 
-                <h:commandButton value="Adicionar" class="btn btn-success" action="#{operacaoBean.adicionarConta()}">
+                <h:commandButton value="Adicionar" class="btn btn-success" onclick="setTimeout(() => {
+                  $('#modalParametro').modal('hide')
+                }, 300);">
+                  <f:ajax execute="pesquisa" render="j_idt6:parametros" listener="#{operacaoBean.adicionarConta()}"/>
                 </h:commandButton>
               </div>
 
