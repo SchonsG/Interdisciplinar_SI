@@ -1,75 +1,133 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html
-   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html" 
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-      
-<h:head>
-   <title>Lançamento</title>
-</h:head>
-<h:body>
-   <h:form>
-      <h:panelGrid columns="2">
-         <h:outputText value="ID" /> 
-         <h:inputText value="#{lanctitulos.conta.id}" />
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-         <h:outputText value="Tipo de Operação:" /> 
-         <h:inputText value="#{lanctitulos.conta.tipoOperacao}" />
+  <ui:define name="content">
+    <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    <title>Novo Lançamento de Contas Pagar/Receber</title>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+        <nav aria-label="breadcrumb" style="font-size: 15px;">
+          <ol class="breadcrumb" style="background: #fefefe;">
+            <li class="breadcrumb-item"><a href="LancamentoTitulos-form.xhtml">Contas Pagar/Receber</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Novo Lançamento de Contas Pagar/Receber</li>
+          </ol>
+        </nav>
 
-         <h:outputText value="Cód. Cliente/Fornecedor:" /> 
-         <h:inputText value="#{lanctitulos.conta.cod_clienteFornecedor}" />
+        <!--Buttons de acoes-->
 
-         <h:outputText value="Nome:" /> 
-         <h:inputText value="#{lanctitulos.conta.nome_clienteFornecedor}" />
+        <h:panelGrid class='col'>
 
-         <h:outputText value="Cód. Conta Debito:" /> 
-         <h:inputText value="#{lanctitulos.conta.cod_contaDeb}" />
+          <h:form>
 
-         <h:outputText value="Cód. Conta Credito:" /> 
-         <h:inputText value="#{lanctitulos.conta.cod_contaCred}" />
+            <div class='form-row'>
+              <div class="col col-md-3">
+                <h:outputLabel value="Código" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.id}" />
+              </div>  
+ <div class="col col-md-3">
+                <h:outputLabel value="Tipo operação" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.tipoOperacao}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Cód. Cliente/Fornecedor" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.cod_clienteFornecedor}" />
+              </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Conta nome" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.nome_clienteFornecedor}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Cód. Conta Debito" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.cod_contaDeb}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Número Documento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.numDocumento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Data Lançamento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.dataLancamento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Data Vencimento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.dataVencimento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Data Pagamento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.dataPagamento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Forma Pagamento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.formaPagamento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Nº de Parcelas" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.numParcelas}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Valor R$" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.valorDocumento}" />
+             </div>
 
-         <h:outputText value="Número Documento" /> 
-         <h:inputText value="#{lanctitulos.conta.numDocumento}" />
+ <div class="col col-md-3">
+                <h:outputLabel value="Cód. Tipo Documento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.cod_tipoDocumento}" />
+             </div>
 
-         <h:outputText value="Data Lançamento:" /> 
-         <h:inputText value="#{lanctitulos.conta.dataLancamento}" />
+<div class="col col-md-3">
+                <h:outputLabel value="Cód. Histórico" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.cod_Historico}" />
+             </div>
+            </div>
 
-         <h:outputText value="Data Vencimento:" /> 
-         <h:inputText value="#{lanctitulos.conta.dataVencimento}" />
+             <br />
 
-         <h:outputText value="Data Pagamento" /> 
-         <h:inputText value="#{lanctitulos.conta.dataPagamento}" />
+            <div class="modal-footer">
+                  <h:commandButton value="Salvar" class="btn btn-success" action="#{clienteBean.save()}"></h:commandButton>
+ <h:commandButton value="Excluir registro selecionado" class="btn btn-danger" action="#{clienteBean.delete(item)}" onclick="return confirm('Deseja realmente excluir a linha selecionada?')" />
+            </div>
 
-         <h:outputText value="Forma Pagamento:" /> 
-         <h:inputText value="#{lanctitulos.conta.formaPagamento}" />
+          </h:form>
 
-         <h:outputText value="Nº de Parcelas:" /> 
-         <h:inputText value="#{lanctitulos.conta.numParcelas}" />
+        </h:panelGrid>
 
-         <h:outputText value="Valor" /> 
-         <h:inputText value="#{lanctitulos.conta.valorDocumento}" />
+        <p:dataTable var="item" value="#{lanctitulos.id}">
+         <p:column headerText="Id">
+            <h:outputText value="#{item.id}" />
+         </p:column>
 
-         <h:outputText value="Cód. Tipo Documento:" /> 
-         <h:inputText value="#{lanctitulos.conta.cod_tipoDocumento}" />
+         <p:column headerText="Tipo operação">
+            <h:outputText value="#{item.tipoOperacao}" />
+         </p:column>
 
-         <h:outputText value="Cód. Histórico:" /> 
-         <h:inputText value="#{lanctitulos.conta.cod_Historico}" />
+         <p:column headerText="Cliente/Fornecedor">
+            <h:outputText value="#{item.nome_clienteFornecedor}"/> 
+         </p:column>
 
-         <h:commandButton value="Salvar" action="#{clienteBean.save()}"></h:commandButton>
+         <p:column headerText="Nº Parcelas">
+            <h:outputText value="#{item.numParcelas}"/> 
+         </p:column>
+
+         <p:column headerText="Valor R$">
+            <h:outputText value="#{item.valorDocumento}"/> 
+         </p:column>
 
          <p:column headerText="">
-            <h:commandButton value="Excluir" action="#{clienteBean.delete(item)}" 
+            <h:commandButton value="Selecionar" action="#{lanctitulos.select(item)}" />
+         </p:column>
+
+         <p:column headerText="">
+            <h:commandButton value="Excluir" action="#{lanctitulos.delete(item)}"
                onclick="return confirm('Excluir?')"
             />
          </p:column>
 
-         <p:column headerText="">
-            <h:commandButton value="Selecionar" action="#{clienteBean.select(item)}" />
-         </p:column>
-         
-      </h:panelGrid>
-</h:form>
-</h:body>
-</html>
+      </p:dataTable>
+
+      </div>
+    </div>
+    <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+  </ui:define>
+</ui:composition>

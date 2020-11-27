@@ -1,105 +1,132 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html
-   PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html" 
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-      
-<h:head>
-   <title>Cadastro</title>
-</h:head>
-<h:body>
-   <h:form>
-      <h:panelGrid columns="2">
-         <h:outputText value="Cod" /> 
-         <h:inputText value="#{cadcli.cliente.cod}" />
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
 
-         <h:outputText value="Tipo de Cliente:" /> 
-         <h:inputText value="#{cadcli.cliente.tipo}" />
+  <ui:define name="content">
+    <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    <title>Novo Cliente/Fornecedor</title>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+        <nav aria-label="breadcrumb" style="font-size: 15px;">
+          <ol class="breadcrumb" style="background: #fefefe;">
+            <li class="breadcrumb-item"><a href="CadastroClientesFornecedores-form.xhtml">Contas Pagar/Receber</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Novo Cliente/Fornecedor</li>
+          </ol>
+        </nav>
 
-         <h:outputText value="CPF/CNPJ:" /> 
-         <h:inputText value="#{cadcli.cliente.cpf_cnpj}" />
+        <!--Buttons de acoes-->
 
-         <h:outputText value="RG/Inscrição Estadual" /> 
-         <h:inputText value="#{cadcli.cliente.rg_ie}" />
+        <h:panelGrid class='col'>
 
-         <h:outputText value="Nome/Razão Social:" /> 
-         <h:inputText value="#{cadcli.cliente.nome_razao}" />
+          <h:form>
 
-         <h:outputText value="CEP:" /> 
-         <h:inputText value="#{cadcli.cliente.cep}" />
+            <div class='form-row'>
+              <div class="col col-md-3">
+                <h:outputLabel value="Código" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.cod}" />
+              </div>  
+ <div class="col col-md-3">
+                <h:outputLabel value="Tipo cliente" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.tipo}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="CPF/CNPJ" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.cpf_cnpj}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="RG/Inscrição Estadual" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.rg_ie}" />
+              </div>
+    <div class="col col-md-3">
+                <h:outputLabel value="Nome/Razão Social" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.nome_razao}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="CEP" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.cep}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Endereço" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.endereco}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Número" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.numero}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Cidade" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.cidade}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Bairro" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.bairro}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Complemento" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.complemento}" />
+              </div>  
+ <div class="col col-md-3">
+                <h:outputLabel value="UF" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.uf}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="País" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.pais}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Telefone Principal" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.telefoneprincipal}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Telefone Secundário" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.telefonesecundario}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="E-mail" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.email}" />
+              </div>
 
-         <h:outputText value="Endereço" /> 
-         <h:inputText value="#{cadcli.cliente.endereco}" />
+            </div>
 
-         <h:outputText value="Número:" /> 
-         <h:inputText value="#{cadcli.cliente.numero}" />
+             <br />
 
-         <h:outputText value="Cidade:" /> 
-         <h:inputText value="#{cadcli.cliente.cidade}" />
+            <div class="modal-footer">
+                  <h:commandButton value="Salvar" class="btn btn-success" action="#{cadcli.save()}"></h:commandButton>
+ <h:commandButton value="Excluir registro selecionado" class="btn btn-danger" action="#{clienteBean.delete(item)}" onclick="return confirm('Deseja realmente excluir a linha selecionada?')" />
+            </div>
 
-         <h:outputText value="Bairro" /> 
-         <h:inputText value="#{cadcli.cliente.bairro}" />
+          </h:form>
 
-         <h:outputText value="Complemento:" /> 
-         <h:inputText value="#{cadcli.cliente.complemento}" />
+        </h:panelGrid>
 
-         <h:outputText value="UF:" /> 
-         <h:inputText value="#{cadcli.cliente.uf}" />
+    <p:dataTable var="item" value="#{cadcli.clientes}">
+                     <p:column headerText="Id">
+                        <h:outputText value="#{item.cod}" />
+                     </p:column>
+           
+                     <p:column headerText="Razão Social">
+                        <h:outputText value="#{item.nome_razao}" />
+                     </p:column>
+           
+                     <p:column headerText="CPF/CNPJ">
+                        <h:outputText value="#{item.cpf_cnpj}" />
+                     </p:column>
+           
+                     <p:column headerText="">
+                        <h:commandButton value="Selecionar" action="#{cadcli.select(item)}" />
+                     </p:column>
+           
+                     <p:column headerText="">
+                        <h:commandButton value="Excluir" action="#{cadcli.delete(item)}"
+                           onclick="return confirm('Excluir?')"
+                        />
+                     </p:column>
+           
+                  </p:dataTable>
 
-         <h:outputText value="País" /> 
-         <h:inputText value="#{cadcli.cliente.pais}" />
-
-         <h:outputText value="Telefone Principal:" /> 
-         <h:inputText value="#{cadcli.cliente.telefoneprincipal}" />
-
-         <h:outputText value="Telefone Secundário:" /> 
-         <h:inputText value="#{cadcli.cliente.telefonesecundario}" />
-
-         <h:outputText value="Email:" /> 
-         <h:inputText value="#{cadcli.cliente.email}" />
-
-         <h:commandButton value="Salvar" action="#{cadcli.save()}"></h:commandButton>
-
-         <p:column headerText="">
-            <h:commandButton value="Excluir" action="#{clienteBean.delete(item)}" 
-               onclick="return confirm('Excluir?')"
-            />
-         </p:column>
-
-         <p:column headerText="">
-            <h:commandButton value="Selecionar" action="#{clienteBean.select(item)}" />
-         </p:column>
-         
-      </h:panelGrid>
-
-      <p:dataTable var="item" value="#{cadcli.clientes}">
-         <p:column headerText="Id">
-            <h:outputText value="#{item.cod}" />
-         </p:column>
-
-         <p:column headerText="Razão Social">
-            <h:outputText value="#{item.nome_razao}" />
-         </p:column>
-
-         <p:column headerText="CNPJ">
-            <h:outputText value="#{item.cpf_cnpj}" />
-         </p:column>
-
-         <p:column headerText="">
-            <h:commandButton value="Selecionar" action="#{cadcli.select(item)}" />
-         </p:column>
-
-         <p:column headerText="">
-            <h:commandButton value="Excluir" action="#{cadcli.delete(item)}" 
-               onclick="return confirm('Excluir?')"
-            />
-         </p:column>
-
-      </p:dataTable>
-
-   </h:form>
-   </h:body>
-   </html>
-     
+      </div>
+    </div>
+    <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+  </ui:define>
+</ui:composition>
