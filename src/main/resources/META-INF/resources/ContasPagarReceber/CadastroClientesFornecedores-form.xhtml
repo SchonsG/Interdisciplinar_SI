@@ -1,0 +1,122 @@
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+  <ui:define name="content">
+    <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    <title>Novo Cliente/Fornecedor</title>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+        <nav aria-label="breadcrumb" style="font-size: 15px;">
+          <ol class="breadcrumb" style="background: #fefefe;">
+            <li class="breadcrumb-item"><a href="CadastroClientesFornecedores-form.xhtml">Contas Pagar/Receber</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Novo Cliente/Fornecedor</li>
+          </ol>
+        </nav>
+
+        <!--Buttons de acoes-->
+
+        <h:panelGrid class='col'>
+
+          <h:form>
+
+            <div class='form-row'>
+              <div class="col col-md-3">
+                <h:outputLabel value="Código" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.cod}" />
+              </div>  
+ <div class="col col-md-3">
+                <h:outputLabel value="Tipo cliente" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.tipo}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="CPF/CNPJ" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.cpf_cnpj}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="RG/Inscrição Estadual" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.rg_ie}" />
+              </div>
+    <div class="col col-md-3">
+                <h:outputLabel value="Nome/Razão Social" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.nome_razao}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="CEP" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.cep}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Endereço" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.endereco}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Número" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.numero}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Cidade" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.cidade}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Bairro" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.bairro}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Complemento" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.complemento}" />
+              </div>  
+ <div class="col col-md-3">
+                <h:outputLabel value="UF" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.uf}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="País" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.pais}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Telefone Principal" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.telefoneprincipal}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Telefone Secundário" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.telefonesecundario}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="E-mail" />
+                <h:inputText class="form-control" value="#{cadcli.cliente.email}" />
+              </div>
+
+            </div>
+
+             <br />
+
+            <div class="modal-footer">
+         <h:commandButton value="Salvar" class="btn btn-success" action="#{cadcli.save()}"></h:commandButton>
+         <h:commandButton value="Excluir registro" class="btn btn-danger" action="#{cadcli.delete(item)}" onclick="return confirm('Deseja realmente excluir a linha selecionada?')"></h:commandButton>
+            </div>
+
+          </h:form>
+
+        </h:panelGrid>
+
+    <p:dataTable var="item" value="#{cadcli.clientes}">
+                     <p:column headerText="Id">
+                        <h:outputText value="#{item.cod}" />
+                     </p:column>
+           
+                     <p:column headerText="Razão Social">
+                        <h:outputText value="#{item.nome_razao}" />
+                     </p:column>
+           
+                     <p:column headerText="CPF/CNPJ">
+                        <h:outputText value="#{item.cpf_cnpj}" />
+                     </p:column>       
+                     
+                  </p:dataTable>
+
+      </div>
+    </div>
+    <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+  </ui:define>
+</ui:composition>

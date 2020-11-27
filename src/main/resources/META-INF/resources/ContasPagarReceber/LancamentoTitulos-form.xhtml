@@ -1,0 +1,142 @@
+<ui:composition template="/templates/masterTemplate.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+
+  <ui:define name="content">
+    <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+    <title>Novo Lançamento de Contas Pagar/Receber</title>
+    <div id="page-content-wrapper">
+      <div class="container-fluid">
+        <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
+        <nav aria-label="breadcrumb" style="font-size: 15px;">
+          <ol class="breadcrumb" style="background: #fefefe;">
+            <li class="breadcrumb-item"><a href="LancamentoTitulos-form.xhtml">Contas Pagar/Receber</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Novo Lançamento de Contas Pagar/Receber</li>
+          </ol>
+        </nav>
+
+        <!--Buttons de acoes-->
+
+        <h:panelGrid class='col'>
+
+          <h:form>
+
+            <div class='form-row'>
+              <div class="col col-md-3">
+                <h:outputLabel value="Código" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.id}" />
+              </div>  
+ <div class="col col-md-3">
+                <h:outputLabel value="Tipo operação" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.tipoOperacao}" />
+              </div>
+ <div class="col col-md-3">
+                <h:outputLabel value="Cód. Cliente/Fornecedor" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.cod_clienteFornecedor}" />
+              </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Conta nome" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.nome_clienteFornecedor}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Cód. Conta Debito" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.cod_contaDeb}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Número Documento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.numDocumento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Data Lançamento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.dataLancamento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Data Vencimento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.dataVencimento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Data Pagamento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.dataPagamento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Forma Pagamento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.formaPagamento}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Nº de Parcelas" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.numParcelas}" />
+             </div>
+<div class="col col-md-3">
+                <h:outputLabel value="Valor R$" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.valorDocumento}" />
+             </div>
+
+ <div class="col col-md-3">
+                <h:outputLabel value="Cód. Tipo Documento" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.cod_tipoDocumento}" />
+             </div>
+
+<div class="col col-md-3">
+                <h:outputLabel value="Cód. Histórico" />
+                <h:inputText class="form-control" value="#{lanctitulos.conta.cod_Historico}" />
+             </div>
+            </div>
+
+             <br />
+
+            <div class="modal-footer">
+ <h:commandButton value="Salvar" class="btn btn-success" action="#{lanctitulos.save()}"></h:commandButton>
+ <h:commandButton value="Excluir registro" class="btn btn-danger" action="#{lanctitulos.delete(conta)}" onclick="return confirm('Deseja realmente excluir a linha selecionada?')" />
+            </div>
+
+          </h:form>
+
+        </h:panelGrid>
+
+        <p:dataTable var="item" value="#{lanctitulos.contas}">
+         <p:column headerText="ID">
+            <h:outputText value="#{item.id}" />
+         </p:column>
+
+         <p:column headerText="Tipo Operação">
+            <h:outputText value="#{item.tipoOperacao}" />
+         </p:column>
+
+         <p:column headerText="Cód Cliente/Fornecedor">
+            <h:outputText value="#{item.cod_clienteFornecedor}" />
+         </p:column>
+
+         <p:column headerText="Cliente/Forn">
+            <h:outputText value="#{item.nome_clienteFornecedor}" />
+         </p:column>
+
+         <p:column headerText="Nº Documento">
+            <h:outputText value="#{item.numDocumento}" />
+         </p:column>
+
+         <p:column headerText="Data Lançamento">
+            <h:outputText value="#{item.dataLancamento}" />
+         </p:column>
+
+
+         <p:column headerText="Data Pagamento">
+            <h:outputText value="#{item.dataPagamento}" />
+         </p:column>
+
+
+         <p:column headerText="Nº de Parcelas"> 
+            <h:outputText value="#{item.numParcelas}" />
+         </p:column>
+
+         <p:column headerText="Valor R$">
+            <h:outputText value="#{item.valorDocumento}" />
+         </p:column>
+
+
+      </p:dataTable>
+
+      </div>
+    </div>
+    <!--FIM DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
+  </ui:define>
+</ui:composition>
