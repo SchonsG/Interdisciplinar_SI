@@ -6,8 +6,6 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate.Param;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import setrem.SistemaContabil.model.Conta;
@@ -102,10 +100,11 @@ public class OperacaoBean {
   public String editar(Operacao oper) {
     this.operacao = oper;
     this.parametros.addAll(oper.getPARAMETROS());
-    return "operacao-parametrizada.xhtml?faces-redirect=true&includeViewParams=true";
+    return "editar-operacao.xhtml?faces-redirect=true&includeViewParams=true";
   }
 
   public String novo() {
+    this.parametros.clear();
     this.operacao = new Operacao();
     return "nova-operacao.xhtml?faces-redirect=true&includeViewParams=true";
   }
@@ -119,18 +118,9 @@ public class OperacaoBean {
     repositoryOperacao.save(operacao);
 
     for (Parametro parm : parametros) {
-      System.out.println("222");
       parm.setTP_OPERACAO_ID(operacao);
-    
-      System.out.println(parm.getTP_OPERACAO_ID().getTP_OPERACAO());
-      System.out.println(parm.getCONTA_ID().getCONTA());
-      System.out.println(parm.getTIPO());
-
       repositoryParametro.save(parm);
-      System.out.println("444");
     }
-
-    System.out.println("555");
 
     this.operacao = new Operacao();
     this.parametro = new Parametro();
@@ -164,6 +154,11 @@ public class OperacaoBean {
   public void setParametros(List<Parametro> parametros) {
     this.parametros = parametros;
   }
+
+  public void excluirParametro(Parametro parm) {
+    this.parametros.remove(parm);
+  }
+
 
   // Histórico
   public HistoricoRepository getRepositoryHistorico() {
@@ -230,6 +225,7 @@ public class OperacaoBean {
   }
 
   public void adicionarConta() {
+    System.out.println(this.parametro.getTIPO());
     this.parametros.add(this.parametro);
     this.parametro = new Parametro();
   }

@@ -138,7 +138,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-body">
-            <h:form>
+            <h:form id="f1">
               <div class='row justify-content-around'>
                 <div class="form-group">
                   <p:inputNumber id="valueinput1" a:placeholder="Valor, ex: R$100,00" decimalPlaces="2"
@@ -151,7 +151,7 @@
                     <div class="input-group-append">
                       <h:commandButton icon="fas fa-search" class="btn btn-outline-secondary" id="button-addon2"
                         value="Pesquisar conta">
-                        <f:ajax execute="pesquisa1" render="j_idt30:dataTableGroup2" listener="#{lancamentoBean.PesquisarConta()}"/>
+                        <f:ajax execute="pesquisa1" render="f1:dataTableGroup2" listener="#{lancamentoBean.PesquisarConta()}"/>
                       </h:commandButton>
                     </div>
                   </div>

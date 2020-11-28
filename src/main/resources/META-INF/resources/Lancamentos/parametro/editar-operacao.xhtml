@@ -5,14 +5,14 @@
 
   <ui:define name="content">
     <!--INICIO DOS ARQUIVOS DA PAGINA (TEMPLATE)-->
-    <title>Nova Operação Parametrizada</title>
+    <title>Editar Operação Parametrizada</title>
     <div id="page-content-wrapper">
       <div class="container-fluid">
         <!--BARRA DE EXIBIÇÃO DE CAMINHOS-->
         <nav aria-label="breadcrumb" style="font-size: 15px;">
           <ol class="breadcrumb" style="background: #fefefe;">
             <li class="breadcrumb-item"><a href="operacao-parametrizada.xhtml">Operações Parametrizadas</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Nova Operação Parametrizada</li>
+            <li class="breadcrumb-item active" aria-current="page">Editar Operação Parametrizada</li>
           </ol>
         </nav>
 
@@ -56,14 +56,6 @@
               <f:facet name="header">Tipo</f:facet>
               <h:outputText value="#{item.TIPO}" />
             </h:column>
-
-            <h:column>
-              <f:facet name="header"></f:facet>
-              <h:commandLink id="excluirParametro" class="btn btn-link"><i href="#" class="fas fa-trash"></i>
-              <f:ajax execute="@this, j_idt6:parametros" render="j_idt6:parametros" listener="#{operacaoBean.excluirParametro(item)}"/>
-              </h:commandLink>
-            </h:column>
-
           </h:dataTable>
 
           <div class="modal-footer">
