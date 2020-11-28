@@ -56,6 +56,14 @@
               <f:facet name="header">Tipo</f:facet>
               <h:outputText value="#{item.TIPO}" />
             </h:column>
+
+            <h:column>
+              <f:facet name="header"></f:facet>
+              <h:commandLink id="excluirParametro" class="btn btn-link"><i href="#" class="fas fa-trash"></i>
+              <f:ajax execute="@this, j_idt6:parametros" render="j_idt6:parametros" listener="#{operacaoBean.excluirParametro(item)}"/>
+              </h:commandLink>
+            </h:column>
+
           </h:dataTable>
 
           <div class="modal-footer">

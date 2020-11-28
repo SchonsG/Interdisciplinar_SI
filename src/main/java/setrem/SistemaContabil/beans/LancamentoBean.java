@@ -78,7 +78,9 @@ public class LancamentoBean {
   }
 
   public void Pesquisar() {
+
     lancamentos = repositoryLancamento.findAll();
+    
   }
 
   public String editar(Lancamento lanc) { 
@@ -131,6 +133,13 @@ public class LancamentoBean {
 
   public List<Lancamento> getLancamentos() {
     return lancamentos = repositoryLancamento.findAll();
+/*     if (lancamentoPesquisa.isEmpty()) {
+      System.out.println("here0");
+      return lancamentos = repositoryLancamento.findAll();
+    } else {
+      System.out.println(this.lancamentoPesquisa);
+      return lancamentos = repositoryLancamento.findPersonalizado(this.lancamentoPesquisa);
+    } */
   }
 
   public void setLancamentos(List<Lancamento> lancamentos) {

@@ -75,7 +75,7 @@ public class OperacaoBean {
     if (this.operacaoPesquisa.isEmpty()) {
       operacoes = repositoryOperacao.findAll();
     } else {
-     // operacoes = repositoryOperacao.findByTP_OPERACAOContaining(this.operacaoPesquisa);
+      operacoes = repositoryOperacao.findByTP_OPERACAOContaining(this.operacaoPesquisa);
     }
     return operacoes;
   }
@@ -110,7 +110,7 @@ public class OperacaoBean {
   }
 
   public void Pesquisar() {
- //   operacoes = repositoryOperacao.findByTP_OPERACAOContaining(this.operacaoPesquisa);
+    operacoes = repositoryOperacao.findByTP_OPERACAOContaining(this.operacaoPesquisa);
   }
 
   public String salvar() {
