@@ -5,16 +5,22 @@ import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-
+import java.sql.SQLException;
+import java.util.HashMap;
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import setrem.SistemaContabil.model.Conta;
 import setrem.SistemaContabil.repository.ContaRepository;
+import setrem.SistemaContabil.config.ReportUtil;
 
 @Named(value = "contaBean")
 @SessionScoped
 public class ContaBean {
   
+  @Autowired
+  private DataSource localDataSource;
+
   @Autowired
   private ContaRepository repositoryConta;
 
@@ -23,6 +29,15 @@ public class ContaBean {
   private List<Conta> contas = new ArrayList<>();
 
   private String contaPesquisa = "";
+
+  public void print() {
+    ReportUtil rpt = new ReportUtil();
+    try {
+       rpt.imprimirRelatorio("plano_contas", new HashMap<>(), localDataSource.getConnection());
+    } catch (SQLException e) {
+       e.printStackTrace();
+    }
+  }
 
   public void Pesquisar() {
      this.contas = repositoryConta.findByCONTAContaining(this.contaPesquisa);
